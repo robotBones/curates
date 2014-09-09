@@ -21,19 +21,17 @@ angular.module('curates.collectionFactory', [])
     return $http({
       method: 'GET',
       url: '/api/collection/' + url
-    }).then(function(response) {
-      if (response.data === 'null') {
-        return null;
-      }
-      return response.data;
+    }).then(function(data) {
+      return data;
     });
   };
 
-  var getListData = function() {
+  var fetchCollections = function() {
     return $http({
       method: 'GET',
       url: '/api/all'
-    }).then(function(response) {
+    })
+    .then(function(response) {
       return response.data;
     });
   };
@@ -83,12 +81,12 @@ angular.module('curates.collectionFactory', [])
 
   return {
     addLink: addLink,
-    upVoteLink: upVoteLink,
+    createCollection: createCollection,
     getCollection: getCollection,
-    getListData: getListData,
+    fetchCollections: fetchCollections,
     getUserCollections: getUserCollections,
     updateCollection: updateCollection,
-    createCollection: createCollection
+    upVoteLink: upVoteLink
   };
 
-})
+});

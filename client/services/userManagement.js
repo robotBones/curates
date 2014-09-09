@@ -41,12 +41,12 @@ angular.module('curates.services', [])
 
   var logout = function(username) {
     // remove token
-    $window.localStorage.removeItem('curates-user', data.token);
+    $window.localStorage.removeItem('curates-user');
     // trigger server to wipe token
     return $http({
       method: 'GET',
       url: '/users/signout',
-      data: {
+      params: {
         username: username,
       }
     }).success(function(data) {
@@ -61,7 +61,6 @@ angular.module('curates.services', [])
     loggedIn: loggedIn,
     login: login,
     logout: logout,
-    validateUser: validateUser
   };
 }])
 

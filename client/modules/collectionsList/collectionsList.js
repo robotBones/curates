@@ -1,20 +1,28 @@
 angular.module('curates.collectionsList', [])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider',function($stateProvider) {
   $stateProvider
     .state('collectionsList', {
       url: '/',
-      templateUrl: 'modules/collectionsList/collectionsList.html'
+      templateUrl: 'modules/collectionsList/collectionsList.html',
+      controller: 'collectionsListController',
+      resolve: {
+        collections: function(collectionFactory) {
+          return collectionFactory.fetchCollections()
+            .then(function(list) {
+              return list;
+            });
+        }
+      }
     });
-})
-  .controller('collectionsListController', function($scope, collectionFactory) {
-    // Initialize empty array to hold collection on scope
-    $scope.listData = [];
-    // Initialize search filter string used in ng-repeat orderBy filter   
-    $scope.predicate = '-stars';
-    
-    // Get data from factory and populate listData with list of collections
-    collectionFactory.getListData().then(function(collections) {
-      $scope.listData = collections;
-    })
-  });
+}])
+
+.controller('collectionsListController', ['$scope', 'collections', function($scope, collections) {
+  // Initialize empty array to hold collection on scope
+  // Initialize search filter string used in ng-repeat orderBy filter   
+  $scope.predicate = '-stars';
+  
+  // Get data from factory and populate listData with list of collections
+  $scope.listData = collections;
+  $scope.randomData = 'hello world';
+}]);
