@@ -1,15 +1,9 @@
 angular.module('curates.services', [])
-.factory('userManagement', function() {
+.factory('userManagement', ['$http', function($http) {
 
   var user = {};
   var loggedIn = false;
-  var initUser = function() {
-    user.givenName = '';
-    user.id = '';
-    user.fullName = '';
-    user.provider = '';
-    loggedIn = false;
-  }
+
   var login = function(name) {
     console.log(name);
     user.givenName = name;
@@ -30,8 +24,9 @@ angular.module('curates.services', [])
     logout: logout,
     validateUser: validateUser
   };
-})
-.controller('userMangamentController', function($scope, userManagement) {
+}])
+
+.controller('userManagementController', function($scope, userManagement) {
   $scope.user = userManagement.user;
   $scope.loggedIn = userManagement.loggedIn;
   $scope.login = function(name) {
@@ -44,4 +39,4 @@ angular.module('curates.services', [])
     $scope.loggedIn = false;
     userManagement.logout();
   }
-})
+});
