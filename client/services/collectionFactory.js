@@ -79,6 +79,10 @@ angular.module('curates.collectionFactory', [])
     // update the vote count for this link within the collection.
   };
 
+  var upVoteCollection = function(collection) {
+    // update the collection vote count
+  };
+
   return {
     addLink: addLink,
     createCollection: createCollection,
@@ -86,7 +90,8 @@ angular.module('curates.collectionFactory', [])
     fetchCollections: fetchCollections,
     getUserCollections: getUserCollections,
     updateCollection: updateCollection,
-    upVoteLink: upVoteLink
+    upVoteLink: upVoteLink,
+    upVoteCollection: upVoteCollection
   };
 
 });
