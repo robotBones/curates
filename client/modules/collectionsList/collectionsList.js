@@ -18,7 +18,6 @@ angular.module('curates.collectionsList', [])
 }])
 
 .controller('collectionsListController', ['$scope', 'collections', function($scope, collections) {
-  // Initialize empty array to hold collection on scope
   // Initialize search filter string used in ng-repeat orderBy filter   
   $scope.predicate = '-stars';
   
