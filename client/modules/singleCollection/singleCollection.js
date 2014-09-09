@@ -29,9 +29,8 @@ angular.module('curates.singleCollection', [])
     $scope.notYetUpvoted = false;
   };
   
-  $scope.clone = function() {
-    $state.go('createCollection', {
-      url: $scope.collection.url
-    });
+  $scope.newLink = function(collection, link) {
+    // send request to server 
+    collectionFactory.addLink(collection, link);
   };
 });
