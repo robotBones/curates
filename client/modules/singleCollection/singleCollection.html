@@ -10,7 +10,8 @@
   <div class="single-link" ng-repeat="link in collection.links">
     <div class="link clearfix">
       <div class="scnshot-container clearfix">
-        <div class="box"></div> 
+        <div ng-click="voteLink(collection, link, 1)" class="arrow-up"></div>
+        <div ng-click="voteLink(collection, link, -1)" class="arrow-down"></div> 
       </div>
       <div class="link-text clearfix">
         <p class="link-title-text"><a href="http://{{ link.url }}"><span>{{ link.title }}</span></a></p>

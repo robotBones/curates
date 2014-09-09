@@ -17,8 +17,8 @@ angular.module('curates.singleCollection', [])
     });
 })
 
-.controller('singleCollectionController', ['$scope', 'collectionFactory', 'collection',
-  function($scope, collectionFactory, collection) {
+.controller('singleCollectionController', ['$scope', 'collectionFactory', 'collection', '$stateParams',
+  function($scope, collectionFactory, collection, $stateParams) {
     $scope.collection = collection;
 
     // Allow the user to star their favorite collections and add to their favorite
@@ -29,8 +29,9 @@ angular.module('curates.singleCollection', [])
 
     // Allow the user to star their favorite collections and add to their favorite
     // collections list
-    $scope.upVoteLink = function(collection, link) {
-      collectionFactory.upVoteLink(collection, link);
+    $scope.voteLink = function(collection, link, val) {
+      var user = 'Me';
+      collectionFactory.voteLink(collection, link, user, val);
     };
     
     $scope.addLink = function(collection, link) {

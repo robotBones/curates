@@ -1,10 +1,10 @@
 angular.module('curates.collectionFactory', [])
 .factory('collectionFactory', ['$http', function($http){
 
-  var addLink = function(collection, link) {
+  var addLink = function(collection, url, link) {
     return $http({
       method: 'POST',
-      url: 'api/collection/update',
+      url: 'api/collection/' + url,
       data: {
         collection: collection,
         link: link
@@ -39,7 +39,7 @@ angular.module('curates.collectionFactory', [])
   var getUserCollections = function(user) {
     return $http({
       method: 'GET',
-      url: '/api/user/' + user.provider + '/' + user.id
+      url: '/api/users/' + user
     }).then(function(response) {
       return response.data;
     });
