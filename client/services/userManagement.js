@@ -20,10 +20,40 @@ angular.module('curates.services', [])
       // trigger some awesome event here
     });
   };
-  var logout = function() {
+
+  var signup = function(username, password, email) {
+    return $http({
+      method: 'POST',
+      url: '/users/signup',
+      data: {
+        username: username,
+        // email: email, // integrate me
+        password: password,
+      }
+    }).success(function(data) {
+      user.user = data.user;
+      // create token
+      $window.localStorage.setItem('curates-user', data.token);
+    }).error(function(data, statuscode) {
+      // trigger some awesome event here
+    });
+  };
+
+  var logout = function(username) {
     // remove token
     $window.localStorage.removeItem('curates-user', data.token);
-
+    // trigger server to wipe token
+    return $http({
+      method: 'GET',
+      url: '/users/signout',
+      data: {
+        username: username,
+      }
+    }).success(function(data) {
+      // successful logout event
+    }).error(function(data, statuscode) {
+      // trigger some awesome event here
+    });
   };
 
   return {
@@ -40,11 +70,14 @@ angular.module('curates.services', [])
   $scope.loggedIn = userManagement.loggedIn;
 
   $scope.login = function(username, password) {
-    userManagement.login()
+    userManagement.login(username, password);
   };
+
   $scope.logout = function() {
-    userManagement.loggedIn = false;
-    $scope.loggedIn = false;
     userManagement.logout();
+  };
+
+  $scope.signup = function(username, password, email) {
+    userManagement.signup(username, password, email);
   }
 });
