@@ -25,7 +25,8 @@ body {
 
 .arrow-up {
   width: 0; 
-  height: 0; 
+  height: 0;
+  cursor: pointer; 
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 10px solid #DF691A;
@@ -34,6 +35,7 @@ body {
 .arrow-down {
   width: 0; 
   height: 0; 
+  cursor: pointer;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 10px solid #DF691A;

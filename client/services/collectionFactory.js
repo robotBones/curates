@@ -1,12 +1,11 @@
 angular.module('curates.collectionFactory', [])
 .factory('collectionFactory', ['$http', function($http){
 
-  var addLink = function(collection, url, link) {
+  var addLink = function(url, link) {
     return $http({
       method: 'POST',
       url: 'api/collection/' + url,
       data: {
-        collection: collection,
         link: link
       }
     })

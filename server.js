@@ -5,6 +5,7 @@ var url = require('url');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var port = process.env.PORT || 3000;
+var getPage = require('./summary.js');
 
 app = express();
 
@@ -16,7 +17,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 app.use(session({
-  secret: "bob the builder"
+  secret: 'bob the builder'
 }));
 
 //serve static files in client when referred to in html
@@ -40,10 +41,16 @@ app.post('/api/collection/update', function(req, res) {
 });
 
 // add a link to collection
-app.post('/api/collection/addlink', function(req, res) {
-  mongo.addLink(req.body).then(function(collection) {
-    res.end(JSON.stringify(collection));
+app.post('/api/collection/:url', function(req, res) {
+  getPage(req.body.link).then(function(data) {
+    delete data.text;
+    delete data.raw;
+    data.summary = data.summary.slice(0, 140);
+    res.json(data);
   });
+  // mongo.addLink(req.body).then(function(collection) {
+  //   res.end(JSON.stringify(collection));
+  // });
 });
 
 // add a star to a collection
