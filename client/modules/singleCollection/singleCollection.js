@@ -11,7 +11,7 @@ angular.module('curates.singleCollection', [])
           return collectionFactory.getCollection($stateParams.url)
             .then(function(collection) {
               return collection;
-            })
+            });
         }
       }
     });
@@ -25,7 +25,7 @@ angular.module('curates.singleCollection', [])
   };
 
   $scope.upVoteCollection = function(collection) {
-    
+
   };
 
   $scope.upVoteLink = function(collection, link) {
