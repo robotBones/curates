@@ -67,7 +67,7 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var addStar = function(data) {
+  var addStar = function(collection) {
     return $http({
       method: 'POST',
       url: '/api/collection/addStar',
@@ -77,8 +77,13 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
+  var upVoteLink = function(collection, link) {
+    // update the vote count for this link within the collection.
+  };
+
   return {
     addLink: addLink,
+    upVoteLink: upVoteLink,
     getCollection: getCollection,
     getListData: getListData,
     getUserCollections: getUserCollections,

@@ -23,14 +23,15 @@ angular.module('curates.singleCollection', [])
     }
   });
 
-  $scope.upVote = function() {
-    $scope.collection.stars++;
-    collectionFactory.updateCollection($scope.collection);
-    $scope.notYetUpvoted = false;
+  $scope.upVoteCollection = function(collection) {
+    collectionFactory.addStar(collection);
+  };
+
+  $scope.upVoteLink = function(collection, link) {
+    collectionFactory.upVoteLink(collection, link);
   };
   
   $scope.newLink = function(collection, link) {
-    // send request to server 
     collectionFactory.addLink(collection, link);
   };
 });
