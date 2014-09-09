@@ -13,6 +13,7 @@ angular.module('curates.services', [])
         password: password
       }
     }).success(function(data) {
+      // store the current user
       user.user = data.user;
       // create token
       $window.localStorage.setItem('curates-user', data.token);
@@ -31,6 +32,7 @@ angular.module('curates.services', [])
         password: password,
       }
     }).success(function(data) {
+      // store the current user
       user.user = data.user;
       // create token
       $window.localStorage.setItem('curates-user', data.token);
