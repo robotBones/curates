@@ -8,7 +8,6 @@ angular.module('curates.singleCollection', [])
       templateUrl: 'modules/singleCollection/singleCollection.html',
       resolve: {
         collection: function(collectionFactory, $stateParams) {
-          console.log($stateParams.url);
           return collectionFactory.getCollection($stateParams.url)
             .then(function(collection) {
               return collection;
