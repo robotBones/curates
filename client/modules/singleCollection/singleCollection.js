@@ -24,7 +24,7 @@ angular.module('curates.singleCollection', [])
     // Allow the user to star their favorite collections and add to their favorite
     // collections list
     $scope.addFavorite = function(collection) {
-      collectionFactory.addStar(collection);
+      collectionFactory.addFavorite(collection);
     };
 
     // Allow the user to star their favorite collections and add to their favorite
