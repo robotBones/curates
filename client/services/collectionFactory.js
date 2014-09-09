@@ -1,4 +1,7 @@
 angular.module('curates.collectionFactory', [])
+
+// This factory houses all the appropriate HTTP methods for handling requests
+// that center around collections.
 .factory('collectionFactory', ['$http', function($http){
 
   var addLink = function(url, link) {
