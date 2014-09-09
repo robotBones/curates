@@ -1,5 +1,5 @@
 angular.module('curates.collectionFactory', [])
-.factory('collectionFactory', function($http){
+.factory('collectionFactory', ['$http', function($http){
 
   var addLink = function(collection, link) {
     return $http({
@@ -93,8 +93,7 @@ angular.module('curates.collectionFactory', [])
     getCollection: getCollection,
     fetchCollections: fetchCollections,
     getUserCollections: getUserCollections,
-    updateCollection: updateCollection,
     upVoteLink: upVoteLink,
   };
 
-});
+}]);

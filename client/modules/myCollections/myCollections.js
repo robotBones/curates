@@ -19,5 +19,14 @@ angular.module('curates.myCollections', [])
 
 .controller('myCollectionsController', function($scope, $stateParams, collections, userManagement) {
   $scope.user = userManagement.user;
-  $scope.collections = collections;
+  // $scope.collections = collections;
+  $scope.collections = [
+    {
+      stars: 2,
+      user: {
+        givenName: 'Me'
+      },
+      title: 'Homie',
+      description: 'stuff'
+    }];
 });

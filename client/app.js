@@ -4,12 +4,10 @@ angular.module('curates', [
   'curates.myCollections',
   'curates.createCollection',
   'curates.singleCollection',
-  'curates.editCollection',
-  'curates.services',
-  'curates.collectionFactory'
+  'curates.collectionFactory',
+  'curates.services'
 ])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$urlRouterProvider', function($urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
-
-});
+}]);
