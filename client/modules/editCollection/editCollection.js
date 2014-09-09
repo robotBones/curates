@@ -38,7 +38,7 @@ angular.module('curates.editCollection', [])
     });
   };
 
-  // add or removes the given index from the toRemove array
+  // Add or removes the given index from the toRemove array
   // called when the remove checkbox is ticked or unticked
   $scope.toggleRemove = function(index) {
     if (_.contains($scope.toRemove, index)) {
@@ -48,7 +48,7 @@ angular.module('curates.editCollection', [])
     }
   };
 
-  // add a link to this collection
+  // Add a link to this collection
   $scope.addLink = function() {
     $scope.collection.links.push({url: '', title: '', description: ''});
   };
