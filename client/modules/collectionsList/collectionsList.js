@@ -24,5 +24,4 @@ angular.module('curates.collectionsList', [])
   
   // Get data from factory and populate listData with list of collections
   $scope.listData = collections;
-  $scope.randomData = 'hello world';
 }]);

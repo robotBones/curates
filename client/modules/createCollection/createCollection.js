@@ -9,7 +9,6 @@ angular.module('curates.createCollection', [])
 })
 
 .controller('createCollectionController', function($scope, $state, $stateParams, userManagement, collectionFactory) {
-  console.log("stateParams url: ", $stateParams.url);
   // Only loggedIn users can create collections
   $scope.loggedIn = userManagement.loggedIn;
 

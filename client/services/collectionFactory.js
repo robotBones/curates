@@ -21,8 +21,8 @@ angular.module('curates.collectionFactory', [])
     return $http({
       method: 'GET',
       url: '/api/collection/' + url
-    }).then(function(data) {
-      return data;
+    }).then(function(response) {
+      return response.data;
     });
   };
 
