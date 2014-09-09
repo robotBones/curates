@@ -65,7 +65,7 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var upVoteLink = function(collection, link, user) {
+  var voteLink = function(collection, link, user, value) {
     // update the vote count for this link within the collection.
     return $http({
       method: 'POST',
@@ -73,7 +73,8 @@ angular.module('curates.collectionFactory', [])
       data: {
         collection: collection,
         link: link,
-        user: user
+        user: user,
+        value: value,
       }
     })
     .success(function(data) {
@@ -93,7 +94,7 @@ angular.module('curates.collectionFactory', [])
     getCollection: getCollection,
     fetchCollections: fetchCollections,
     getUserCollections: getUserCollections,
-    upVoteLink: upVoteLink,
+    voteLink: voteLink,
   };
 
 }]);
