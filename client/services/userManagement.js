@@ -1,22 +1,27 @@
 angular.module('curates.services', [])
-.factory('userManagement', ['$http', function($http) {
+.factory('userManagement', ['$http', '$window' , function($http, $window) {
 
   var user = {};
   var loggedIn = false;
 
-  var login = function(name) {
-    console.log(name);
-    user.givenName = name;
-    user.id = name;
-    user.fullName = name;
-    user.provider = 'test';
+  var login = function(username, password) {
+    return $http({
+      method: 'GET',
+      url: '/users',
+      params: {
+        username: username,
+        password: password
+      }
+    }).success(function(res) {
+      user.user = res.user;
+      // create token
+      $window.localStorage.setItem('curates-user', res.token);
+    })
   };
   var logout = function() {
     initUser();
   };
-  var validateUser = function(target) {
-    return target.provider === user.provider && target.id === user.id
-  };
+
   return {
     user: user,
     loggedIn: loggedIn,
@@ -29,10 +34,9 @@ angular.module('curates.services', [])
 .controller('userManagementController', function($scope, userManagement) {
   $scope.user = userManagement.user;
   $scope.loggedIn = userManagement.loggedIn;
-  $scope.login = function(name) {
-    userManagement.loggedIn = true;
-    $scope.loggedIn = true;
-    userManagement.login(name);
+
+  $scope.login = function(username, password) {
+    userManagement.login()
   };
   $scope.logout = function() {
     userManagement.loggedIn = false;
