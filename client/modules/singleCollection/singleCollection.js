@@ -29,12 +29,6 @@ angular.module('curates.singleCollection', [])
 
     // Allow the user to star their favorite collections and add to their favorite
     // collections list
-    $scope.upVoteCollection = function(collection) {
-      collectionFactory.upVoteCollection(collection);
-    };
-
-        // Allow the user to star their favorite collections and add to their favorite
-    // collections list
     $scope.upVoteLink = function(collection, link) {
       collectionFactory.upVoteLink(collection, link);
     };

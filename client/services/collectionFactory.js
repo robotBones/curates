@@ -4,7 +4,7 @@ angular.module('curates.collectionFactory', [])
   var addLink = function(collection, link) {
     return $http({
       method: 'POST',
-      url: 'api/collection/update',
+      url: 'api/collections/update',
       data: {
         collection: collection,
         link: link
@@ -20,7 +20,7 @@ angular.module('curates.collectionFactory', [])
   var getCollection = function(url) {
     return $http({
       method: 'GET',
-      url: '/api/collection/' + url
+      url: '/api/collections/' + url
     }).then(function(response) {
       return response.data;
     });
@@ -48,7 +48,7 @@ angular.module('curates.collectionFactory', [])
   var createCollection = function(collection) {
     return $http({
       method: 'POST',
-      url: '/api/collection/create',
+      url: '/api/collections/create',
       data: collection
     }).then(function(response) {
       return response.data;
@@ -58,7 +58,7 @@ angular.module('curates.collectionFactory', [])
   var addFavorite = function(collection) {
     return $http({
       method: 'POST',
-      url: '/api/collection/addStar',
+      url: '/api/collections/addStar',
       data: data
     }).then(function(response) {
       return response.data;
@@ -69,7 +69,7 @@ angular.module('curates.collectionFactory', [])
     // update the vote count for this link within the collection.
     return $http({
       method: 'POST',
-      url: 'api/collection/update',
+      url: '/api/links/',
       data: {
         collection: collection,
         link: link,
@@ -78,14 +78,12 @@ angular.module('curates.collectionFactory', [])
     })
     .success(function(data) {
       // do something cool with a successful post
+      console.log(data);
     })
     .error(function(data) {
-      // do something cool with an error
+      // do something cool with a returned error
+      console.log(data);
     });
-  };
-
-  var upVoteCollection = function(collection) {
-    // update the collection vote count
   };
 
   return {
@@ -97,7 +95,6 @@ angular.module('curates.collectionFactory', [])
     getUserCollections: getUserCollections,
     updateCollection: updateCollection,
     upVoteLink: upVoteLink,
-    upVoteCollection: upVoteCollection
   };
 
 });
