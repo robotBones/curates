@@ -4,7 +4,7 @@ angular.module('curates.collectionFactory', [])
   var addLink = function(collection, link) {
     return $http({
       method: 'POST',
-      url: 'api/collections/update',
+      url: 'api/collection/update',
       data: {
         collection: collection,
         link: link
@@ -20,7 +20,7 @@ angular.module('curates.collectionFactory', [])
   var getCollection = function(url) {
     return $http({
       method: 'GET',
-      url: '/api/collections/' + url
+      url: '/api/collection/' + url
     }).then(function(response) {
       return response.data;
     });
@@ -48,7 +48,7 @@ angular.module('curates.collectionFactory', [])
   var createCollection = function(collection) {
     return $http({
       method: 'POST',
-      url: '/api/collections/create',
+      url: '/api/collection/create',
       data: collection
     }).then(function(response) {
       return response.data;
@@ -58,7 +58,7 @@ angular.module('curates.collectionFactory', [])
   var addFavorite = function(collection) {
     return $http({
       method: 'POST',
-      url: '/api/collections/addStar',
+      url: '/api/collection/addStar',
       data: data
     }).then(function(response) {
       return response.data;
