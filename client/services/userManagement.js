@@ -2,24 +2,28 @@ angular.module('curates.services', [])
 .factory('userManagement', ['$http', '$window' , function($http, $window) {
 
   var user = {};
-  var loggedIn = false;
+  var loggedIn = $window.localStorage.getItem('curates-user');
 
   var login = function(username, password) {
     return $http({
       method: 'GET',
-      url: '/users',
+      url: '/users/login',
       params: {
         username: username,
         password: password
       }
-    }).success(function(res) {
-      user.user = res.user;
+    }).success(function(data) {
+      user.user = data.user;
       // create token
-      $window.localStorage.setItem('curates-user', res.token);
-    })
+      $window.localStorage.setItem('curates-user', data.token);
+    }).error(function(data, statuscode) {
+      // trigger some awesome event here
+    });
   };
   var logout = function() {
-    initUser();
+    // remove token
+    $window.localStorage.removeItem('curates-user', data.token);
+
   };
 
   return {
