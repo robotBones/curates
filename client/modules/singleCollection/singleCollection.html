@@ -3,7 +3,7 @@
     <p class="collection-title-text"><span>{{ collection.title }}</span></p>
     <p class="collection-description-text">{{ collection.description }}</p>
     <div class="btn-container clearfix">
-      <button class="clone-btn" ng-if="!isUser" ng-click="clone()">Clone</button>
+      <button class="clone-btn" ng-if="!isUser" ng-click="clone()">Favorite</button>
       <button class="upvote-btn" ng-click="upVote()" ng-if="notYetUpvoted">Upvote</button>
       <span class="link-description-text" style="margin-top: .5rem;" ng-if="!notYetUpvoted">Liked!</span>
     </div>

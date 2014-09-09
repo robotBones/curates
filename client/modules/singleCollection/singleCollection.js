@@ -20,7 +20,7 @@ angular.module('curates.singleCollection', [])
 .controller('singleCollectionController', function($scope, collectionFactory, collection) {
   $scope.collection = collection;
 
-  $scope.upVoteCollection = function(collection) {
+  $scope.favoriteCollection = function(collection) {
     collectionFactory.addStar(collection);
   };
 
