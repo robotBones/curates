@@ -45,16 +45,6 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var updateCollection = function(collection) {
-    return $http({
-      method: 'POST',
-      url: '/api/collection/update',
-      data: collection
-    }).then(function(response) {
-      return response.data;
-    });
-  };
-
   var createCollection = function(collection) {
     return $http({
       method: 'POST',
@@ -65,7 +55,7 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var addStar = function(collection) {
+  var addFavorite = function(collection) {
     return $http({
       method: 'POST',
       url: '/api/collection/addStar',
@@ -75,8 +65,23 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var upVoteLink = function(collection, link) {
+  var upVoteLink = function(collection, link, user) {
     // update the vote count for this link within the collection.
+    return $http({
+      method: 'POST',
+      url: 'api/collection/update',
+      data: {
+        collection: collection,
+        link: link,
+        user: user
+      }
+    })
+    .success(function(data) {
+      // do something cool with a successful post
+    })
+    .error(function(data) {
+      // do something cool with an error
+    });
   };
 
   var upVoteCollection = function(collection) {
@@ -84,6 +89,7 @@ angular.module('curates.collectionFactory', [])
   };
 
   return {
+    addFavorite: addFavorite,
     addLink: addLink,
     createCollection: createCollection,
     getCollection: getCollection,

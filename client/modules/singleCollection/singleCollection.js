@@ -17,22 +17,30 @@ angular.module('curates.singleCollection', [])
     });
 })
 
-.controller('singleCollectionController', ['$scope', 'collectionFactory', 'collection', function($scope, collectionFactory, collection) {
-  $scope.collection = collection;
+.controller('singleCollectionController', ['$scope', 'collectionFactory', 'collection',
+  function($scope, collectionFactory, collection) {
+    $scope.collection = collection;
 
-  $scope.addFavorite = function(collection) {
-    collectionFactory.addStar(collection);
-  };
+    // Allow the user to star their favorite collections and add to their favorite
+    // collections list
+    $scope.addFavorite = function(collection) {
+      collectionFactory.addStar(collection);
+    };
 
-  $scope.upVoteCollection = function(collection) {
+    // Allow the user to star their favorite collections and add to their favorite
+    // collections list
+    $scope.upVoteCollection = function(collection) {
+      collectionFactory.upVoteCollection(collection);
+    };
 
-  };
+        // Allow the user to star their favorite collections and add to their favorite
+    // collections list
+    $scope.upVoteLink = function(collection, link) {
+      collectionFactory.upVoteLink(collection, link);
+    };
+    
+    $scope.addLink = function(collection, link) {
+      collectionFactory.addLink(collection, link);
+    };
 
-  $scope.upVoteLink = function(collection, link) {
-    collectionFactory.upVoteLink(collection, link);
-  };
-  
-  $scope.addLink = function(collection, link) {
-    collectionFactory.addLink(collection, link);
-  };
-}]);
+  }]);
