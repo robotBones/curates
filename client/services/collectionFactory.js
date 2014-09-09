@@ -1,7 +1,9 @@
 angular.module('curates.collectionFactory', [])
 
 // This factory houses all the appropriate HTTP methods for handling requests
-// that center around collections.
+// that center around collections.  POST requests are handled using success and
+// error functionality.  GET requests are handled using then in order to allow
+// controllers to resolve them and bind data before rendering.
 .factory('collectionFactory', ['$http', function($http){
 
   var addLink = function(url, link) {
@@ -12,10 +14,10 @@ angular.module('curates.collectionFactory', [])
         link: link
       }
     })
-    .success(function(data) {
+    .success(function(data, code) {
       // do something cool with a successful post
     })
-    .error(function(data) {
+    .error(function(data, code) {
       // do something cool with an error
     });
   } 

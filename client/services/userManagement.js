@@ -36,8 +36,9 @@ angular.module('curates.services', [])
     }).success(function(data) {
       // store the current user
       user.username = username;
-      // create token
+      // create token in local storage
       $window.localStorage.setItem('curates-user', data.token);
+      // set logged in status
       angular.copy([true], loggedIn);
     }).error(function(data, statuscode) {
       // trigger some awesome event here
