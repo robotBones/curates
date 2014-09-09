@@ -6,12 +6,6 @@ angular.module('curates')
     scopes: {
       collection: '='
     },
-    templateUrl: 'directives/collectionMeta.html',
-    link: function(scope) {
-      scope.castVote = function(collection, link, val) {
-        var user = 'Me';
-        collectionFactory.voteLink(collection, link, user, val);
-      };
-    }
+    templateUrl: 'directives/collectionMeta.html'
   }
 }]);
