@@ -17,14 +17,14 @@ angular.module('curates.singleCollection', [])
     });
 })
 
-.controller('singleCollectionController', ['$scope', 'collectionFactory', 'collection', '$stateParams',
-  function($scope, collectionFactory, collection, $stateParams) {
+.controller('singleCollectionController', ['$scope', 'collectionFactory', 'collection', '$stateParams', 'userManagement',
+  function($scope, collectionFactory, collection, $stateParams, userManagement) {
     $scope.collection = collection;
 
     // Allow the user to star their favorite collections and add to their favorite
     // collections list
     $scope.addFavorite = function(collection) {
-      collectionFactory.addFavorite(collection);
+      collectionFactory.addFavorite(userManagement.user.username, collection);
     };
 
     // Allow the user to star their favorite collections and add to their favorite

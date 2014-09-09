@@ -49,18 +49,26 @@ angular.module('curates.collectionFactory', [])
       method: 'POST',
       url: '/api/collection/create',
       data: collection
-    }).then(function(response) {
-      return response.data;
+    })
+    .success(function(data, code) {
+      // do something awesome with the server response
+    })
+    .error(function(data, code) {
+      // do something awesome with the server response
     });
   };
 
-  var addFavorite = function(collection) {
+  var addFavorite = function(user, collection) {
     return $http({
       method: 'POST',
-      url: '/api/collection/addStar',
-      data: data
-    }).then(function(response) {
-      return response.data;
+      url: '/api/users/' + user,
+      data: {collection: collection}
+    })
+    .success(function(data, code) {
+      // do something awesome with the server response
+    })
+    .error(function(data, code) {
+      // do something awesome with the server response
     });
   };
 
@@ -76,11 +84,11 @@ angular.module('curates.collectionFactory', [])
         value: value,
       }
     })
-    .success(function(data) {
+    .success(function(data, code) {
       // do something cool with a successful post
       console.log(data);
     })
-    .error(function(data) {
+    .error(function(data, code) {
       // do something cool with a returned error
       console.log(data);
     });
