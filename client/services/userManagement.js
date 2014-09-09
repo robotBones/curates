@@ -2,7 +2,7 @@ angular.module('curates.services', [])
 .factory('userManagement', ['$http', '$window' , function($http, $window) {
 
   var user = {};
-  var loggedIn = $window.localStorage.getItem('curates-user');
+  var loggedIn = [$window.localStorage.getItem('curates-user')];
 
   var login = function(username, password) {
     return $http({
@@ -14,7 +14,9 @@ angular.module('curates.services', [])
       }
     }).success(function(data) {
       // store the current user
-      user.user = data.user;
+      user.username = 'Bob';
+      // user.username = data.username;
+      angular.copy([true], loggedIn);
       // create token
       $window.localStorage.setItem('curates-user', data.token);
     }).error(function(data, statuscode) {
@@ -36,6 +38,7 @@ angular.module('curates.services', [])
       user.user = data.user;
       // create token
       $window.localStorage.setItem('curates-user', data.token);
+      angular.copy([true], loggedIn);
     }).error(function(data, statuscode) {
       // trigger some awesome event here
     });
@@ -44,6 +47,7 @@ angular.module('curates.services', [])
   var logout = function(username) {
     // remove token
     $window.localStorage.removeItem('curates-user');
+    angular.copy([false], loggedIn);
     // trigger server to wipe token
     return $http({
       method: 'GET',
