@@ -4,37 +4,47 @@ angular.module('curates', [
   'ui.router',
 ])
 
-.config(['$stateProvider' , function($stateProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/');
+
   $stateProvider
-    .state('main', {
-      url: '/',
-      templateUrl: 'templates/main.tpl.html'
-    })
     .state('collection', {
       url: '/collection',
-      templateUrl: 'templates/collection.tpl.html',
-      resolve: {
-        collection: function(Services) {
-          return Services.getCollection(url)
-            .then(function(collection) {
-              return collection;
-            });
-        }
-      }
+      templateUrl: 'templates/collection.tpl.html'
+    })
+    .state('collections', {
+      url: '/collections',
+      templateUrl: 'templates/collections.tpl.html'
     })
     .state('login', {
-      url: '/login',
+      url: '/',
       templateUrl: 'templates/login.tpl.html'
     });
 
 }])
 
-.controller('MainController', ['collection', 'collections', function(collection, collections) {
-  $scope.current = collection;
-  $scope.collections = collections || [];
-}])
+.controller('MainController', ['$scope', '$state', 'Services',
+  function($scope, $state, Services) {
+    $scope.current = [];
+    $scope.user = Services.user;
+    $scope.login = function(data) {
+      var username = data.username;
+      var password = data.password;
+      Services.login('bob', 123);
+      $state.go('collections');
+    };
+    $scope.collections = [];
+    Services.getUserCollections()
+      .then(function(collections) {
+        angular.copy(collections, $scope.collections);
+      });
+  }
+])
 
-.factory('Services', ['$http', function($http){
+.factory('Services', ['$window', '$http', function($window, $http){
+
+  var user = {};
+  var currentCollection = {};
 
   var login = function(username, password) {
     return $http({
@@ -57,12 +67,13 @@ angular.module('curates', [
   var logout = function() {
     // remove token
     $window.localStorage.removeItem('curates-ext');
+    delete user.username;
   };
 
   var addLink = function(url, link) {
     return $http({
       method: 'POST',
-      url: 'api/collection/' + url,
+      url: 'http://127.0.0.1:3000/api/collection/' + url,
       data: {
         link: link
       }
@@ -73,6 +84,7 @@ angular.module('curates', [
     .error(function(data, code) {
       // do something cool with an error
     });
+  };
 
   var getCollection = function(url) {
     return $http({
@@ -86,19 +98,21 @@ angular.module('curates', [
   var getUserCollections = function(user) {
     return $http({
       method: 'GET',
-      url: '/api/users/' + user
+      // url: 'http://127.0.0.1:3000/api/users/' + user
+      url: 'http://127.0.0.1:3000/api/all'
     }).then(function(response) {
       return response.data;
     });
   };
-};
 
   return {
     addLink: addLink,
+    currentCollection: currentCollection,
     getCollection: getCollection,
     getUserCollections: getUserCollections,
     login: login,
     logout: logout,
+    user: user,
   };
 
 }]);
