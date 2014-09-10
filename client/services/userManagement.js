@@ -23,7 +23,7 @@ angular.module('curates.services', [])
     });
   };
 
-  var signup = function(username, password, email) {
+  var signup = function(username, password) {
     return $http({
       method: 'POST',
       url: '/users/signup',
@@ -86,6 +86,7 @@ angular.module('curates.services', [])
   };
 
   $scope.signup = function(data) {
-    userManagement.signup(data.username, data.password, data.email);
+    userManagement.signup(data.username, data.password);
   };
+
 });
