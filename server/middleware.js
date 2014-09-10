@@ -9,5 +9,5 @@ module.exports = function(app, express) {
   var collectionRouter = express.Router();
   var linksRouter = express.Router();
 
-  app.use('/api/collection', )
+  // app.use('/api/collection', )
 };
