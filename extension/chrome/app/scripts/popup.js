@@ -23,17 +23,20 @@ angular.module('curates', [
 
 }])
 
-.controller('MainController', ['$scope', '$state', 'Services',
-  function($scope, $state, Services) {
+.controller('MainController', ['$scope', '$state', 'Services', '$stateParams',
+  function($scope, $state, Services, $stateParams) {
     $scope.current = [];
     $scope.user = Services.user;
+    $scope.collections = [];
+    $scope.current = $stateParams.collection;
+
     $scope.login = function(data) {
       var username = data.username;
       var password = data.password;
       Services.login('bob', 123);
       $state.go('collections');
     };
-    $scope.collections = [];
+    
     Services.getUserCollections()
       .then(function(collections) {
         angular.copy(collections, $scope.collections);
@@ -44,7 +47,6 @@ angular.module('curates', [
 .factory('Services', ['$window', '$http', function($window, $http){
 
   var user = {};
-  var currentCollection = {};
 
   var login = function(username, password) {
     return $http({
@@ -107,7 +109,6 @@ angular.module('curates', [
 
   return {
     addLink: addLink,
-    currentCollection: currentCollection,
     getCollection: getCollection,
     getUserCollections: getUserCollections,
     login: login,
