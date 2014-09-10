@@ -3,7 +3,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
   <title>Curates</title>
-  <link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="assets/styles/styles.css">
   <link rel="stylesheet" href="assets/styles/icecream-grid.min.css">
@@ -11,7 +10,7 @@
 <body class="i-container" ng-app="curates">
   <div class="i-g">
     <div class="i-8 logo">
-      <h1 class="pulse" ui-sref="collections">Curates</h1>
+      <h1 ui-sref="collections">Curates</h1>
     </div>
     <div class="i-4 signin" ng-controller="userManagementController">
       <user-management/>
@@ -34,7 +33,7 @@
   <script src="directives/userManagement.js"></script>
   <script src="services/collectionFactory.js"></script>
   <script src="directives/collectionMeta.js"></script>
+  <script src="directives/modalDialog.js"></script>
   <script src="modules/createCollection/createCollection.js"></script>
-  
 </body>
 </html>

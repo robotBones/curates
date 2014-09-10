@@ -27,11 +27,13 @@ html {
 }
 
 a {
+  color: #FFEC01;
   text-decoration: none;
 }
 
 a:visited {
-  color: white;
+  color: #FFEC01;
+  text-decoration: none;
 }
 
 body {
@@ -39,30 +41,7 @@ body {
   padding: 5px;
   text-align: center;
   background-color: #3E80C5;
-  font-family: 'Patua One', cursive;
-}
-
-@-webkit-keyframes pulse { 
-    0% { -webkit-transform: scale(1); } 
-    50% { -webkit-transform: scale(1.05); } 
-    100% { -webkit-transform: scale(1); } 
-} 
-
-@keyframes pulse { 
-    0% { transform: scale(1); } 
-    50% { transform: scale(1.05); } 
-    100% { transform: scale(1); } 
-} 
-
-.pulse {
-    animation-duration: 2s;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-name: pulse; 
-    animation-name: pulse;
-    animation-iteration-count: infinite; 
-    -webkit-animation-iteration-count: infinite;  
-    -webkit-animation-fill-mode: both; 
-    animation-fill-mode: both;
+  font-family: 'Lobster', cursive;
 }
 
 .logo {
@@ -78,6 +57,7 @@ body {
 }
 
 .user-button {
+  cursor: pointer;
   color: white;
   border: 1px solid white;
   display: inline-block;
@@ -106,6 +86,7 @@ body {
 }
 
 .collection-title {
+  width: auto;
   color: #F4513E;
 }
 
@@ -113,7 +94,7 @@ body {
   padding: 5px;
   font-size: 1rem;
   text-align: left;
-  color: #D0B639;
+  color: #FFEC01;
 }
 
 .logo {
@@ -121,4 +102,54 @@ body {
   right: 0;
   width: 40px;
   display: inline;
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index:9999;
+  top: 0px;
+  left: 0px;
+  width:100%;
+  height:100%;
+  background-color:#000000;
+  opacity: 0.8;
+}
+
+.modal-dialog {
+  z-index:10000;
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  background-color: #DD2C36;
+  box-shadow: 4px 4px 80px #000;
+}
+
+.modal-dialog-content {
+  text-align: center;
+  padding:10px;
+  color: white;
+}
+
+.modal-dialog-content input{
+  width: 60%;
+}
+
+.modal-close {
+  position: fixed;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.modal-iframe {
+  width: 90%;
+  height: 300px;
 }
