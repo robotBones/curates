@@ -5,7 +5,6 @@ angular.module('curates', [
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
 
   $stateProvider
     .state('collection', {
@@ -24,6 +23,7 @@ angular.module('curates', [
       controller: 'LoginController'
     });
 
+  $urlRouterProvider.otherwise('/');
 }])
 
 .controller('LoginController', ['$scope', '$state', 'Services', function($scope, $state, Services) {
