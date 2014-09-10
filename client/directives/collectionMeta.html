@@ -1,9 +1,5 @@
-<div class="collectionMeta">
-  <div class="collection-box collection-box-1"></div>
-  <div class="collection-text collection-text-2 clearfix">
-    <p class="collection-title">
-      <a ng-href="#/{{ collection.url }}">{{ collection.title }}</a>
-    </p>
+<div class="collection-box">
+    <h2 class="collection-title" ui-sref="collection({url: collection.url})">{{ collection.title }}</h2>
     <p class="collection-description">{{ collection.description }}</p>
-  </div>
+    <p class="collection-creator" ui-sref="user-collections({user: collection.user.givenName})">{{collection.user.givenName}}</p>
 </div>

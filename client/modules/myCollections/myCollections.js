@@ -2,9 +2,9 @@ angular.module('curates.myCollections', [])
 
 .config(function($stateProvider) {
   $stateProvider
-  .state('myCollections', {
+  .state('user-collections', {
     url: '/collections/:user',
-    controller: 'myCollectionsController',
+    controller: 'userCollectionsController',
     templateUrl: 'modules/myCollections/myCollections.html',
     resolve: {
       collections: function(collectionFactory, $stateParams) {
@@ -17,7 +17,7 @@ angular.module('curates.myCollections', [])
   });
 })
 
-.controller('myCollectionsController', function($scope, $stateParams, collections, userManagement) {
+.controller('userCollectionsController', function($scope, $stateParams, collections, userManagement) {
   $scope.user = userManagement.user;
   $scope.collections = collections;
 });

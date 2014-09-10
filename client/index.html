@@ -3,19 +3,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
   <title>Curates</title>
-  <link href='http://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="assets/styles/standardize.css">
-  <link rel="stylesheet" href="assets/styles/linkview-grid.css">
+  <link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="assets/styles/styles.css">
+  <link rel="stylesheet" href="assets/styles/icecream-grid.min.css">
 </head>
-<body ng-app="curates" class="body index clearfix">
-  <nav class="navbar"></nav>
-  <p class="logotext logotext-1"><a ng-href='/'><span>Curates</span></a></p>
-  <div class="signin clearfix" ng-controller="userManagementController">
-    <user-management />
+<body class="i-container" ng-app="curates">
+  <div class="i-g">
+    <div class="i-8 logo">
+      <h1 class="pulse" ui-sref="collections">Curates</h1>
+    </div>
+    <div class="i-4 signin" ng-controller="userManagementController">
+      <user-management/>
+    </div>
   </div>
-
-  <div ui-view></div>
+  <div class="i-g">
+    <div class="i-2"></div>
+      <div class="i-8" ui-view></div>
+    <div class="i-2"></div>
 
   <!-- Development Files -->
   <script src="lib/underscore/underscore.js"></script>

@@ -91,7 +91,6 @@ angular.module('curates.collectionFactory', [])
     })
     .success(function(data, code) {
       // do something cool with a successful post
-      console.log(data);
     })
     .error(function(data, code) {
       // do something cool with a returned error

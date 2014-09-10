@@ -2,7 +2,7 @@ angular.module('curates.singleCollection', [])
 
 .config(function($stateProvider) {
   $stateProvider
-    .state('singleCollection', {
+    .state('collection', {
       url: '/:url',
       controller: 'singleCollectionController',
       templateUrl: 'modules/singleCollection/singleCollection.html',

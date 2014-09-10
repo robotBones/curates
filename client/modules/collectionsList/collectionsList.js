@@ -2,7 +2,7 @@ angular.module('curates.collectionsList', [])
 
 .config(['$stateProvider',function($stateProvider) {
   $stateProvider
-    .state('collectionsList', {
+    .state('collections', {
       url: '/',
       templateUrl: 'modules/collectionsList/collectionsList.html',
       controller: 'collectionsListController',

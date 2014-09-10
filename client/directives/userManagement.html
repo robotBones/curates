@@ -1,14 +1,14 @@
-<div class="userManagement">
-  <div class="notLoggedIn" ng-if="!loggedIn[0]">
-    <button class="_button" ng-click="login('bob', '123')">Sign In</button>
-    <button class="_button" ng-click="login('bob', '123', 'bob@gmail.com')">Sign Up</button>
+<div class="">
+  <div class="" ng-if="!loggedIn[0]">
+    <a class="user-button" ng-click="login('bob', '123')">Sign In</a>
+    <a class="user-button" ng-click="login('bob', '123', 'bob@gmail.com')">Sign Up</a>
   </div>
   <div class="loggedIn" ng-if="loggedIn[0]">
     <div>
       Welcome {{ user.username }}!!!
-      <button ng-click="logout('bob')">Log Out</button>
+      <button class="user-button" ng-click="logout('bob')">Log Out</button>
     </div>
-    <a ng-href="#/create">Create New</a> || 
+    <a ui-sref="create">Create New</a> || 
     <a ui-sref="myCollections">Your Collections</a><br />
   </div>
 </div>

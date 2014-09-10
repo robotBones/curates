@@ -2,20 +2,13 @@
   <div class="select-collection select-collection-1 clearfix">
     <p class="collection-title-text"><span>{{ collection.title }}</span></p>
     <p class="collection-description-text">{{ collection.description }}</p>
-    <div class="btn-container clearfix">
-      <button class="clone-btn" ng-click="addFavorite()">Favorite</button>
-      <button class="upvote-btn" ng-click="upVoteCollection()">Upvote</button>
-    </div>
+    <div class="star" ng-click="addFavorite()"></div>
   </div>
-  <div class="single-link" ng-repeat="link in collection.links">
-    <div class="link clearfix">
-      <div class="scnshot-container clearfix">
+  <div class="collection-box" ng-repeat="link in collection.links">
+        <a href="http://{{ link.url }}" target="_blank"><h2 class="collection-title">{{ link.title }}</h2></a>
+        <p class="collection-description">{{ link.description }}</p>
         <div ng-click="voteLink(collection, link, 1)" class="arrow-up"></div>
         <div ng-click="voteLink(collection, link, -1)" class="arrow-down"></div> 
-      </div>
-      <div class="link-text clearfix">
-        <p class="link-title-text"><a href="http://{{ link.url }}"><span>{{ link.title }}</span></a></p>
-        <p class="link-description-text">{{ link.description }}</p>
       </div>
     </div>
   </div>
