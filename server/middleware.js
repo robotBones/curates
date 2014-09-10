@@ -9,10 +9,9 @@ module.exports = function(app, express) {
   var collectionRouter = express.Router();
   var linksRouter = express.Router();
 
-  // app.use('/api/collection/:url', collectionRouter);
-  // app.use('/api/all', collectionRouter);
-  // app.use('/api/collection/create', collectionRouter);
-  // app.use('/api/users/:user', collectionRouter);
+  app.use('/api/collection/:url', collectionRouter);
+  app.use('/api/collection/all', collectionRouter);
+  app.use('/api/collection/create', collectionRouter);
   // app.use('api/collection/:url' linksRouter);
   // app.use('/api/links/', linksRouter);
   app.use('/users', userRouter);
