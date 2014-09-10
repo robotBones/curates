@@ -1,15 +1,14 @@
 <div>
-  <div class="select-collection select-collection-1 clearfix">
-    <p class="collection-title-text"><span>{{ collection.title }}</span></p>
+  <div class="collection-box">
+    <img class="logo" src="../../assets/images/add.png" ng-click="console.log('hi')"/>
+    <img class="logo" src="../../assets/images/heart-icon.png" />
+    <h2 class="collection-title">{{ collection.title }}</h2>
     <p class="collection-description-text">{{ collection.description }}</p>
-    <div class="star" ng-click="addFavorite()"></div>
   </div>
   <div class="collection-box" ng-repeat="link in collection.links">
-        <a href="http://{{ link.url }}" target="_blank"><h2 class="collection-title">{{ link.title }}</h2></a>
-        <p class="collection-description">{{ link.description }}</p>
-        <div ng-click="voteLink(collection, link, 1)" class="arrow-up"></div>
-        <div ng-click="voteLink(collection, link, -1)" class="arrow-down"></div> 
-      </div>
-    </div>
+      <a href="http://{{ link.url }}" target="_blank"><h2 class="collection-title">{{ link.title }}</h2></a>
+      <p class="collection-description">{{ link.description }}</p>
+      <div ng-click="voteLink(collection, link, 1)" class="arrow-up"></div>
+      <div ng-click="voteLink(collection, link, -1)" class="arrow-down"></div> 
   </div>
 </div>

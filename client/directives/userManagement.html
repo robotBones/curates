@@ -1,14 +1,14 @@
-<div class="">
+<div>
   <div class="" ng-if="!loggedIn[0]">
     <a class="user-button" ng-click="login('bob', '123')">Sign In</a>
     <a class="user-button" ng-click="login('bob', '123', 'bob@gmail.com')">Sign Up</a>
   </div>
   <div class="loggedIn" ng-if="loggedIn[0]">
     <div>
-      Welcome {{ user.username }}!!!
+      Welcome, {{ user.username }}!
       <button class="user-button" ng-click="logout('bob')">Log Out</button>
     </div>
     <a ui-sref="create">Create New</a> || 
-    <a ui-sref="myCollections">Your Collections</a><br />
+    <a ui-sref="user-collections({user: user.username})">Your Collections</a><br />
   </div>
 </div>
