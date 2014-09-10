@@ -33,7 +33,7 @@ angular.module('curates.singleCollection', [])
       var user = 'Me';
       collectionFactory.voteLink(collection, link, user, val);
     };
-    
+
     $scope.addLink = function(collection, link) {
       collectionFactory.addLink(collection, link);
     };
