@@ -1,4 +1,4 @@
-describe('ShortenController', function() {
+describe('collectionList', function() {
   var $scope, $rootScope, $location, collectionsListController, $httpBackend, collectionFactory;
 
   beforeEach(module('curates'));

@@ -1,5 +1,6 @@
 angular.module('curates')
-.directive('collectionMeta', function() {
+
+.directive('collectionMeta', ['collectionFactory', function(collectionFactory) {
   return {
     restrict: 'E',
     scopes: {
@@ -7,4 +8,4 @@ angular.module('curates')
     },
     templateUrl: 'directives/collectionMeta.html'
   }
-});
+}]);

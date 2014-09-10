@@ -1,16 +1,14 @@
-<div class="userManagement">
-  <div class="notLoggedIn" ng-if="!loggedIn">
-    <form id="signin" ng-submit="login(name)">
-      <input class="_input" placeholder="Username" type="text" ng-model="name" name="username">
-      <button class="_button" type="submit" name="submit">Sign In</button>
-    </form>
+<div>
+  <div class="" ng-if="!loggedIn[0]">
+    <a class="user-button" ng-click="login('bob', '123')">Sign In</a>
+    <a class="user-button" ng-click="login('bob', '123', 'bob@gmail.com')">Sign Up</a>
   </div>
-  <div class="loggedIn" ng-if="loggedIn">
-    <form id="logout" ng-submit="logout()">
-      Welcome {{ user.givenName }}!!
-      <button type="submit" name="submit">Log Out</button>
-    </form>
-    <a ng-href="#/create">Create New</a> &nbsp;&nbsp;&nbsp;
-    <a ui-sref="myCollections">Your Collections</a><br />
+  <div class="loggedIn" ng-if="loggedIn[0]">
+    <div>
+      Welcome, {{ user.username }}!
+      <button class="user-button" ng-click="logout('bob')">Log Out</button>
+    </div>
+    <a ui-sref="create">Create New</a> || 
+    <a ui-sref="user-collections({user: user.username})">Your Collections</a><br />
   </div>
 </div>
