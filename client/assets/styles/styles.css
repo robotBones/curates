@@ -39,24 +39,24 @@ body {
   padding: 5px;
   text-align: center;
   background-color: #3E80C5;
-  font-family: 'Patua One', cursive;
+  font-family: 'Lobster', cursive;
 }
 
 @-webkit-keyframes pulse { 
     0% { -webkit-transform: scale(1); } 
-    50% { -webkit-transform: scale(1.05); } 
+    50% { -webkit-transform: scale(1.9); } 
     100% { -webkit-transform: scale(1); } 
 } 
 
 @keyframes pulse { 
     0% { transform: scale(1); } 
-    50% { transform: scale(1.05); } 
+    50% { transform: scale(1.9); } 
     100% { transform: scale(1); } 
 } 
 
 .pulse {
-    animation-duration: 2s;
-    -webkit-animation-duration: 2s;
+    animation-duration: .5s;
+    -webkit-animation-duration: .5s;
     -webkit-animation-name: pulse; 
     animation-name: pulse;
     animation-iteration-count: infinite; 
