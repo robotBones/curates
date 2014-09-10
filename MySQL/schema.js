@@ -1,6 +1,5 @@
 var db = require('./dbInit.js');
 
-
 // Tables for Users, Collections, Links
 db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
