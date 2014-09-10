@@ -26,26 +26,23 @@ angular.module('curates', [
 
 }])
 
-.controller('LoginController', ['$scope', '$state', 'Services',
-  function($scope, $state, Services) {
-    $scope.login = function(data) {
-      var username = data.username;
-      var password = data.password;
-      Services.login('bob', 123);
-      $state.go('collections');
-    };
-    
-    Services.getUserCollections()
-      .then(function(collections) {
-        angular.copy(collections, $scope.collections);
-      });
-  }
-])
+.controller('LoginController', ['$scope', '$state', 'Services', function($scope, $state, Services) {
+  $scope.login = function(data) {
+    Services.login(data.username, data.password);
+    $state.go('collections', {user: data.username});
+  };
+  
+  Services.getUserCollections()
+    .then(function(collections) {
+      angular.copy(collections, $scope.collections);
+    });
+}])
+
+.controller('CollectionController', ['$scope', '$state', 'Services', function($scope, $state, Services) {
+
+}])
 
 .factory('Services', ['$window', '$http', function($window, $http){
-
-  var user = {};
-  var current = {};
 
   var login = function(username, password) {
     return $http({
@@ -107,12 +104,10 @@ angular.module('curates', [
 
   return {
     addLink: addLink,
-    current: current,
     getCollection: getCollection,
     getUserCollections: getUserCollections,
     login: login,
     logout: logout,
-    user: user,
   };
 
 }]);
