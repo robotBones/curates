@@ -1,0 +1,14 @@
+<div class="modal" ng-if="show">
+  <div class="modal-overlay" ng-click="hideModal()"></div>
+  <div class="modal-dialog" ng-style="dialogStyle">
+    <div class="modal-close" ng-click="hideModal()">X</div>
+    <div class="modal-dialog-content">
+      <h3>Login</h3>
+      <form ng-submit="action({userInfo: userInfo}); hideModal()">
+        <div>Username:</br><input type="text" ng-model="userInfo.username" required></div>
+        <div>Password:</br><input type="password" ng-model="userInfo.password" required></div>
+        <input style="visibility:hidden" type="submit">
+      </form>
+    </div>
+  </div>
+</div>
