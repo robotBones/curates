@@ -2,7 +2,6 @@
 
 angular.module('curates', [
   'ui.router',
-  'curates.services',
 ])
 
 .config(['$stateProvider' , function($stateProvider) {
@@ -27,6 +26,7 @@ angular.module('curates', [
       url: '/login',
       templateUrl: 'templates/login.tpl.html'
     });
+
 }])
 
 .controller('MainController', ['collection', 'collections', function(collection, collections) {
@@ -39,7 +39,7 @@ angular.module('curates', [
   var login = function(username, password) {
     return $http({
       method: 'GET',
-      url: '/users/login',
+      url: 'http://127.0.0.1:3000/users/login',
       params: {
         username: username,
         password: password
@@ -47,7 +47,6 @@ angular.module('curates', [
     }).success(function(data) {
       // store the current user
       user.username = username;
-      angular.copy([true], loggedIn);
       // create token
       $window.localStorage.setItem('curates-ext', data.token);
     }).error(function(data, statuscode) {
@@ -55,23 +54,25 @@ angular.module('curates', [
     });
   };
 
-  var logout = function(username) {
+  var logout = function() {
     // remove token
-    $window.localStorage.removeItem('curates-user');
-    angular.copy([false], loggedIn);
-    // trigger server to wipe token
-    return $http({
-      method: 'GET',
-      url: '/users/signout',
-      params: {
-        username: username,
-      }
-    }).success(function(data) {
-      // successful logout event
-    }).error(function(data, statuscode) {
-      // trigger some awesome event here
-    });
+    $window.localStorage.removeItem('curates-ext');
   };
+
+  var addLink = function(url, link) {
+    return $http({
+      method: 'POST',
+      url: 'api/collection/' + url,
+      data: {
+        link: link
+      }
+    })
+    .success(function(data, code) {
+      // do something cool with a successful post
+    })
+    .error(function(data, code) {
+      // do something cool with an error
+    });
 
   var getCollection = function(url) {
     return $http({
@@ -90,49 +91,14 @@ angular.module('curates', [
       return response.data;
     });
   };
-
-  var addFavorite = function(user, collection) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/' + user,
-      data: {collection: collection}
-    })
-    .success(function(data, code) {
-      // do something awesome with the server response
-    })
-    .error(function(data, code) {
-      // do something awesome with the server response
-    });
-  };
-
-  var voteLink = function(collection, link, user, value) {
-    // update the vote count for this link within the collection.
-    return $http({
-      method: 'POST',
-      url: '/api/links/',
-      data: {
-        collection: collection,
-        link: link,
-        user: user,
-        value: value,
-      }
-    })
-    .success(function(data, code) {
-      // do something cool with a successful post
-    })
-    .error(function(data, code) {
-      // do something cool with a returned error
-      console.log(data);
-    });
-  };
+};
 
   return {
-    login: login,
-    logout: logout,
-    addFavorite: addFavorite,
+    addLink: addLink,
     getCollection: getCollection,
     getUserCollections: getUserCollections,
-    voteLink: voteLink
+    login: login,
+    logout: logout,
   };
 
 }]);
