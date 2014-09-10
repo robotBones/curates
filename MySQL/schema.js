@@ -20,6 +20,7 @@ db.knex.schema.hasTable('collections').then(function(exists) {
       collection.increments('id').primary();
       collection.string('name', 255);
       collection.string('description', 255);
+      collection.string('url', 255);
     }).then(function() {
       console.log("collection table created");
     });

@@ -50,13 +50,13 @@ angular.module('curates.collectionFactory', [])
   };
 
   var createCollection = function(collection) {
-    console.log(collection);
     return $http({
       method: 'POST',
-      url: '/api/collection/' + url,
+      url: '/api/collection/create',
       data: collection
     })
     .success(function(data, code) {
+      console.log('succeeded');
       // do something awesome with the server response
     })
     .error(function(data, code) {

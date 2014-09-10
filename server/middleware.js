@@ -9,9 +9,9 @@ module.exports = function(app, express) {
   var collectionRouter = express.Router();
   var linksRouter = express.Router();
 
-  app.use('/api/collection/:url', collectionRouter);
-  app.use('/api/collection/all', collectionRouter);
-  app.use('/api/collection/create', collectionRouter);
+  app.use('/api/collection', collectionRouter);
+  app.use('/api/collection', collectionRouter);
+  app.use('/api/collection', collectionRouter);
   // app.use('api/collection/:url' linksRouter);
   // app.use('/api/links/', linksRouter);
   app.use('/users', userRouter);
@@ -23,4 +23,5 @@ module.exports = function(app, express) {
   });
 
   require('../MySQL/users/usersRoutes.js')(userRouter);
+  require('../MySQL/collections/collectionsRoutes.js')(collectionRouter);
 };

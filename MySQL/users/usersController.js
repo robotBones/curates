@@ -17,7 +17,7 @@ module.exports = {
               console.log('User saved');
             });
         } else {
-          res.send('user already exists')
+          res.send('user already exists');
         }
       });
   },
