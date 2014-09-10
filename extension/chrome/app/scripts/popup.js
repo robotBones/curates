@@ -5,48 +5,44 @@ angular.module('curates', [
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
 
   $stateProvider
     .state('collection', {
       url: '/collection',
-      templateUrl: 'templates/collection.tpl.html'
+      templateUrl: 'templates/collection.tpl.html',
+      controller: 'NavigateController',
     })
     .state('collections', {
       url: '/collections',
-      templateUrl: 'templates/collections.tpl.html'
+      templateUrl: 'templates/collections.tpl.html',
+      controller: 'CollectionController'
     })
     .state('login', {
       url: '/',
-      templateUrl: 'templates/login.tpl.html'
+      templateUrl: 'templates/login.tpl.html',
+      controller: 'LoginController'
     });
+
+  $urlRouterProvider.otherwise('/');
+}])
+
+.controller('LoginController', ['$scope', '$state', 'Services', function($scope, $state, Services) {
+  $scope.login = function(data) {
+    Services.login(data.username, data.password);
+    $state.go('collections', {user: data.username});
+  };
+  
+  Services.getUserCollections()
+    .then(function(collections) {
+      angular.copy(collections, $scope.collections);
+    });
+}])
+
+.controller('CollectionController', ['$scope', '$state', 'Services', function($scope, $state, Services) {
 
 }])
 
-.controller('MainController', ['$scope', '$state', 'Services', '$stateParams',
-  function($scope, $state, Services, $stateParams) {
-    $scope.current = [];
-    $scope.user = Services.user;
-    $scope.collections = [];
-    $scope.current = $stateParams.collection;
-
-    $scope.login = function(data) {
-      var username = data.username;
-      var password = data.password;
-      Services.login('bob', 123);
-      $state.go('collections');
-    };
-    
-    Services.getUserCollections()
-      .then(function(collections) {
-        angular.copy(collections, $scope.collections);
-      });
-  }
-])
-
 .factory('Services', ['$window', '$http', function($window, $http){
-
-  var user = {};
 
   var login = function(username, password) {
     return $http({
@@ -100,8 +96,7 @@ angular.module('curates', [
   var getUserCollections = function(user) {
     return $http({
       method: 'GET',
-      // url: 'http://127.0.0.1:3000/api/users/' + user
-      url: 'http://127.0.0.1:3000/api/all'
+      url: 'http://127.0.0.1:3000/api/users/' + user
     }).then(function(response) {
       return response.data;
     });
@@ -113,7 +108,6 @@ angular.module('curates', [
     getUserCollections: getUserCollections,
     login: login,
     logout: logout,
-    user: user,
   };
 
 }]);
