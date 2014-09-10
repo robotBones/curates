@@ -1,16 +1,16 @@
 <div>
   <div ng-if="!loggedIn[0]">
-    <a class="user-button" ng-click="loginShown = !loginShown">Sign In</a>
-    <a class="user-button" ng-click="signupShown = !signupShown">Sign Up</a>
+    <a class="user-button" ng-click="loginShown = true">Sign In</a>
+    <a class="user-button" ng-click="signupShown = true">Sign Up</a>
     <modal-dialog show="loginShown" action="login(userInfo)" template-url="directives/login.tpl.html"></modal-dialog>
     <modal-dialog show="signupShown" action="signup(userInfo)" template-url="directives/signup.tpl.html"></modal-dialog>
   </div>
   <div ng-if="loggedIn[0]">
     <div>
       Welcome, {{ user.username }}!
-      <button class="user-button" ng-click="logout('bob')">Log Out</button>
+      <button class="user-button" ng-click="logout()">Log Out</button>
     </div>
     <a ui-sref="create">Create New</a> || 
-    <a ui-sref="user-collections({user: user.username})">Your Collections</a><br />
+    <a ui-sref="user-collections({user: user.username})">Your Collections</a>
   </div>
 </div>

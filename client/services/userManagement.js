@@ -14,8 +14,7 @@ angular.module('curates.services', [])
       }
     }).success(function(data) {
       // store the current user
-      user.username = 'Bob';
-      // user.username = data.username;
+      user.username = username;
       angular.copy([true], loggedIn);
       // create token
       $window.localStorage.setItem('curates-user', data.token);
@@ -68,6 +67,7 @@ angular.module('curates.services', [])
     loggedIn: loggedIn,
     login: login,
     logout: logout,
+    signup: signup
   };
 }])
 
