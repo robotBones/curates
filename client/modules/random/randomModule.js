@@ -4,14 +4,14 @@ angular.module('curates.random', [])
 
   $stateProvider
   .state('random', {
-    url: '/r',
-    templateUrl: 'random/experimental.html',
+    url: '/1/r',
+    templateUrl: 'modules/random/experimental.html',
     controller: 'randomController'
   });
 
 
 })
 
-.controller(['randomController', function(){
+.controller('randomController', function(){
 
-}]);
+});

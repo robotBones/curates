@@ -6,6 +6,7 @@ angular.module('curates', [
   'curates.singleCollection',
   'curates.collectionFactory',
   'curates.services',
+  'curates.random'
 ])
 
 .config(['$urlRouterProvider', function($urlRouterProvider) {
