@@ -1,4 +1,4 @@
-var db = require('./dbInit.js');
+var db = require('../dbInit.js');
 
 var Link = db.Model.extend({
   tableName: 'links',

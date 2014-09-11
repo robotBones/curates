@@ -21,6 +21,7 @@ db.knex.schema.hasTable('collections').then(function(exists) {
       collection.string('name', 255);
       collection.string('description', 255);
       collection.string('url', 255);
+      collection.timestamps();
     }).then(function() {
       console.log("collection table created");
     });
