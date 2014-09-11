@@ -1,0 +1,15 @@
+<div class="modal" ng-if="show">
+  <div class="modal-overlay" ng-click="hideModal()"></div>
+  <div class="modal-dialog" ng-style="dialogStyle">
+    <div class="modal-close" ng-click="hideModal()">X</div>
+    <div class="modal-dialog-content">
+      <form ng-submit="action({link: link})">
+        <div>Title</div>
+        <input class="" type="text" ng-model="link.title">
+        <div>URL</div>
+        <input class="" type="url" ng-model="link.url">
+        <input style="visibility:hidden" type="submit">
+      </form>
+    </div>
+  </div>
+</div>

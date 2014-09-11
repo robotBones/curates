@@ -52,6 +52,9 @@ angular.module('curates.collectionFactory', [])
   };
 
   var createCollection = function(collection) {
+    // parse out all non url friendly characters and convert to lower case
+    collection.url = collection.name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+
     return $http({
       method: 'POST',
       url: '/api/collection/create',
@@ -59,6 +62,7 @@ angular.module('curates.collectionFactory', [])
     })
     .success(function(data, code) {
       // do something awesome with the server response
+      // register positive response code
     })
     .error(function(data, code) {
       // do something awesome with the server response
