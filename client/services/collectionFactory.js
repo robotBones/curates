@@ -33,7 +33,7 @@ angular.module('curates.collectionFactory', [])
   var fetchCollections = function() {
     return $http({
       method: 'GET',
-      url: '/api/all'
+      url: '/api/collection/all'
     })
     .then(function(response) {
       return response.data;
@@ -43,7 +43,7 @@ angular.module('curates.collectionFactory', [])
   var getUserCollections = function(user) {
     return $http({
       method: 'GET',
-      url: '/api/users/' + user
+      url: '/api/collection/users'
     }).then(function(response) {
       return response.data;
     });
@@ -56,6 +56,7 @@ angular.module('curates.collectionFactory', [])
       data: collection
     })
     .success(function(data, code) {
+      console.log('succeeded');
       // do something awesome with the server response
     })
     .error(function(data, code) {
@@ -66,7 +67,7 @@ angular.module('curates.collectionFactory', [])
   var addFavorite = function(user, collection) {
     return $http({
       method: 'POST',
-      url: '/api/users/' + user,
+      url: '/api/collection/' + user,
       data: {collection: collection}
     })
     .success(function(data, code) {

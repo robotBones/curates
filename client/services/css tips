@@ -1,0 +1,16 @@
+box sizing
+
+
+css positioning
+static: default
+
+relative: like static
+z-index: how close it is towards you
+  must be relative position
+
+fixed: fixed on scroll
+
+absolute: position relative to nearest positioned ancestor that has a position other than static
+  -by deafult, it is absolute in terms of the size of the intial window
+  -should use within another parent block
+

@@ -4,6 +4,7 @@
     <a class="user-button" ng-click="signupShown = true">Sign Up</a>
     <modal-dialog show="loginShown" action="login(userInfo)" template-url="directives/login.tpl.html"></modal-dialog>
     <modal-dialog show="signupShown" action="signup(userInfo)" template-url="directives/signup.tpl.html"></modal-dialog>
+
   </div>
   <div ng-if="loggedIn[0]">
     <div>
