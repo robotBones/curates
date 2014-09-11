@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 
     nodemon: {
       dev: {
-        script: 'server.js'
+        script: 'index.js'
       }
     },
 
