@@ -37,7 +37,9 @@ angular.module('curates.collectionFactory', [])
       url: '/api/collection/all'
     })
     .then(function(response) {
-      return response.data;
+
+      console.log(response.data.results);
+      return response.data.results;
     });
   };
 
