@@ -11,6 +11,7 @@ angular.module('curates.singleCollection', [])
 
 .controller('singleCollectionController', ['$scope', 'collectionFactory', 'userManagement',
   function($scope, collectionFactory, userManagement) {
+    $scope.addShown = false;
     $scope.collection = collectionFactory.collection;
 
     // Allow the user to star their favorite collections and add to their favorite
@@ -26,8 +27,8 @@ angular.module('curates.singleCollection', [])
       collectionFactory.voteLink(collection, link, user, val);
     };
 
-    $scope.addLink = function(collection, link) {
-      collectionFactory.addLink(collection, link);
+    $scope.addLink = function(link) {
+      collectionFactory.addLink($scope.collection, link);
     };
 
   }]);

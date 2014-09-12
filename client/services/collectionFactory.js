@@ -63,7 +63,7 @@ angular.module('curates.collectionFactory', [])
       data: coll
     })
     .success(function(data, code) {
-      collection = coll;
+      angular.copy(coll, collection);
       $state.go('collection', {url: coll.url})
     })
     .error(function(data, code) {

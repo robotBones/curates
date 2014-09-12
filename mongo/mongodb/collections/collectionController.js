@@ -37,9 +37,9 @@ module.exports = {
   },
 
   fetchAll: function(req, res) {
-    Collections.find()
+    Collections.find({})
       .exec(function(err, collections) {
-        res.send(collections);
+        res.json({results: collections});
       });
   },
 
