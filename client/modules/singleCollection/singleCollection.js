@@ -30,6 +30,9 @@ angular.module('curates.singleCollection', [])
     };
 
     $scope.addLink = function(link) {
+      if(collectionFactory.collection.links === undefined){
+        collectionFactory.collection.links = [];
+      }
       collectionFactory.addLink($scope.collection.title, link);
       if(!collectionFactory.collection.links){
         collectionFactory.collection.links = [];

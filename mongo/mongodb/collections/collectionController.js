@@ -1,5 +1,6 @@
 var Collections = require('../../mongo.js').collection;
 var Users = require('../../mongo.js').user;
+var summary = require('../../../summary.js');
 
 module.exports = {
   collectionCreate: function(req, res) {
@@ -44,17 +45,22 @@ module.exports = {
   },
 
   addLink: function(req, res) {
-    var title = req.body.title;
-    var link = req.body.link;
+    var link = {
+      url: req.body.link
+    };    
 
     Collections.findOne({title: title})
       .exec(function(err, collection) {
         if (!collection) {
           res.send('Collection does not exist');
         } else {
-          collection.links.push(link);
-          collection.save();
-          res.send('Link added');
+          summary(link).then(function(data){
+            link.description = data.summary;
+            link.title = data.title;
+            collection.links.push(link);
+            collection.save();
+            res.send('Link added');
+          });
         }
       });
   },
@@ -97,7 +103,7 @@ module.exports = {
       .exec(function(err, collection) {
         if (!err && collection.links) {
           collection.links.forEach(function(item) {
-            if (item.title === link) {
+            if (item.url === link) {
               if (value > 0) {
                 item.upVote++;
               } else {
