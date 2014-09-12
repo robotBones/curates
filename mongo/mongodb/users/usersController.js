@@ -1,4 +1,7 @@
 var Users = require('../../mongo.js').user;
+var jwt = require('jwt-simple');
+var Q = require('q');
+
 
 module.exports = {
   signupUser: function(req, res) {
@@ -16,26 +19,38 @@ module.exports = {
           });
           newUser.save();
           console.log('User saved');
-          res.json({token: 'token'});
+          var token = jwt.encode(found, 'secret');
+          console.log(token)
+          res.json({token: token});
         }
       })
+
   },
 
   login: function(req, res) {
     var username = req.query.username;
     var password = req.query.password;
 
-    Users.findOne({username: username})
-      .exec(function(err, found) {
-        if (found) {
-          if (found.password === password) {
-            res.json({token: 'token'});
-          } else {
-            res.status(500).send('Bad password');
-          }
+    var findUser = Q.nbind(Users.findOne, Users);
+    findUser({username: username})
+      .then(function (user) {
+        if (!user) {
+          console.log('User does not exist');
         } else {
-          res.status(500).send('User does not exist');
+          return user.comparePasswords(password)
+            .then(function(foundUser) {
+              console.log('got here')
+              if (foundUser) {
+                var token = jwt.encode(user, 'secret');
+                res.json({token: token});
+              } else {
+                console.log('No user');
+              }
+            });
         }
+      })
+      .fail(function (error) {
+        next(error);
       });
   }
 
