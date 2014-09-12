@@ -14,7 +14,6 @@ angular.module('curates.services', [])
       }
     }).success(function(data) {
       // store the current user
-      console.log(data);
       user.username = username;
 
       angular.copy([true], loggedIn);

@@ -77,7 +77,6 @@ module.exports = {
 
   getUserCollections: function(req, res) {
     var username = req.query.username;
-
     Users.findOne({username: username})
       .exec(function(err, user) {
         var favorites = user.favorites;

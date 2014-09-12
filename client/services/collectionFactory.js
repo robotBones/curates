@@ -44,11 +44,13 @@ angular.module('curates.collectionFactory', [])
   };
 
   var getUserCollections = function(user) {
+    console.log(user);
     return $http({
       method: 'GET',
       url: '/api/collection/users',
       params: {username: user}
     }).then(function(response) {
+      console.log(response.data);
       return response.data;
     });
   };
