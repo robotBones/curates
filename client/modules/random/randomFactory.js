@@ -5,6 +5,5 @@ angular.module('curates')
   return $http({
     method: 'GET',
     url: '/api/all',
-    params: {zipcode: zipcode}
   })
 }]);
