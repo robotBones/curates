@@ -88,15 +88,15 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var voteLink = function(title, link, user, value) {
+  var voteLink = function(collection, link, value) {
     // update the vote count for this link within the title.
+
     return $http({
       method: 'PUT',
       url: '/api/links',
       data: {
-        title: title,
-        link: link,
-        user: user,
+        title: collection.title,
+        linkTitle: link.url,
         value: value
       }
     })
