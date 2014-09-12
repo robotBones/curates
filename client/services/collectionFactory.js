@@ -6,12 +6,13 @@ angular.module('curates.collectionFactory', [])
 // controllers to resolve them and bind data before rendering.
 .factory('collectionFactory', ['$http', function($http){
 
-  var addLink = function(url, link) {
+  var addLink = function(title, link) {
     return $http({
       method: 'POST',
-      url: 'api/collection/' + url,
+      url: 'api/collection/addlink',
       data: {
-        link: link
+        link: link,
+        title: title
       }
     })
     .success(function(data, code) {
@@ -21,10 +22,10 @@ angular.module('curates.collectionFactory', [])
       // do something cool with an error
     });
   } 
-  var getCollection = function(url) {
+  var getCollection = function(title) {
     return $http({
       method: 'GET',
-      url: '/api/collection/' + url
+      url: '/api/collection'
     }).then(function(response) {
       return response.data;
     });
@@ -43,7 +44,8 @@ angular.module('curates.collectionFactory', [])
   var getUserCollections = function(user) {
     return $http({
       method: 'GET',
-      url: '/api/collection/users'
+      url: '/api/collection/users',
+      params: {user: user}
     }).then(function(response) {
       return response.data;
     });
@@ -68,7 +70,10 @@ angular.module('curates.collectionFactory', [])
     return $http({
       method: 'POST',
       url: '/api/collection/addfav',
-      data: {collection: collection}
+      data: {
+        collection: collection, 
+        username: user
+      }
     })
     .success(function(data, code) {
       // do something awesome with the server response
@@ -78,16 +83,16 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var voteLink = function(collection, link, user, value) {
-    // update the vote count for this link within the collection.
+  var voteLink = function(title, link, user, value) {
+    // update the vote count for this link within the title.
     return $http({
       method: 'PUT',
-      url: '/api/links/',
+      url: '/api/links',
       data: {
-        collection: collection,
+        title: title,
         link: link,
         user: user,
-        value: value,
+        value: value
       }
     })
     .success(function(data, code) {

@@ -8,7 +8,7 @@ module.exports = {
     var url = req.body.url;
 
     Collections.findOne({title: title})
-      .success(function(found) {
+      .exec(function(found) {
         if (found) {
           res.json(found);
         } else {
@@ -30,7 +30,7 @@ module.exports = {
     var title = req.query.title;
 
     Collections.findOne({title: title})
-      .success(function(found) {
+      .exec(function(found) {
         if (found) {
           res.json(found);
         } else {
@@ -41,18 +41,17 @@ module.exports = {
 
   fetchAll: function(req, res) {
     Collections.find()
-      .success(function(collections) {
+      .exec(function(collections) {
         res.send(collections);
       });
   },
 
   addLink: function(req, res) {
-    var url = req.body.url;
     var title = req.body.title;
     var link = req.body.link;
 
     Collections.findOne({title: title})
-      .success(function(collection) {
+      .exec(function(collection) {
         if (!collection) {
           res.send('Collection does not exist');
         } else {
@@ -68,7 +67,7 @@ module.exports = {
     var collection = req.body.collection;
 
     Users.findOne({username: username})
-      .success(function(user) {
+      .exec(function(user) {
         if (!user) {
           res.send('User not found');
         } else {
@@ -80,16 +79,12 @@ module.exports = {
   },
 
   getUserCollections: function(req, res) {
-    var username = req.body.username;
+    var username = req.query.username;
 
-    Users.findOne({username: username})
-      .then(function(data) {
-        var favorites = data.user.favorites;
-        return favorites;
-      })
-      .then(function(favs) {
-        Collections.find({_id: {$in: favs}})
-          .success(function(collections) {
+    Users.findOne({username: username}, function(err, data) {
+        var favorites = user.favorites;
+        Collections.find({_id: {$in: favorites}})
+          .exec(function(collections) {
             res.json(collections);
           });
       });
@@ -101,7 +96,7 @@ module.exports = {
     var link = req.body.linkTitle;
 
     Collections.find({title: title})
-      .success(function(collection) {
+      .exec(function(collection) {
         if (collection) {
           collection.links.forEach(function(item) {
             if (item.title === link) {
@@ -119,6 +114,6 @@ module.exports = {
         }
 
       }); 
-  };
+  }
 
 };

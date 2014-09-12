@@ -6,19 +6,18 @@ module.exports = {
     var password = req.body.password;
 
     Users.findOne({username: username})
-      .success(function(found) {
+      .exec(function(found) {
+        console.log(found)
         if (found) {
           res.send('User already exists');
         } else {
-          var newUser = new User({
+          var newUser = new Users({
             username: username,
             password: password
           });
-          newUser.save()
-            .then(function() {
-              console.log('User saved');
-              res.json({token: 'token'});
-            });
+          newUser.save();
+          console.log('User saved');
+          res.json({token: 'token'});
         }
       })
   },
@@ -28,7 +27,7 @@ module.exports = {
     var password = req.query.password;
 
     Users.findOne({username: username})
-      .success(function(found) {
+      .exec(function(found) {
         if (found) {
           if (found.password === password) {
             res.json({token: 'token'});

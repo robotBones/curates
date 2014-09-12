@@ -1,6 +1,6 @@
 // Establish connection with the server
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://@ds035240.mongolab.com:35240/curates-hack-reactor');
+mongoose.connect('mongodb://jimjea:hack123@ds035240.mongolab.com:35240/curates-hack-reactor');
 var db = mongoose.connection;
 
 // Attach useful listeners to the database
@@ -45,7 +45,7 @@ var collectionSchema = new mongoose.Schema({
   links: [{
     url: String,
     title: String,
-    description: String
+    description: String,
     upVote: {
       type: Number,
       default: 0

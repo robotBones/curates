@@ -32,7 +32,6 @@ app.post('/api/collection/addfav', collectionController.addFavorite);
 app.put('/api/links', collectionController.voteLink);
 
 
-
 app.listen(port, function() {
   console.log('listening on: ', port);
 });
