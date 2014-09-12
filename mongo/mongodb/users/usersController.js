@@ -29,13 +29,15 @@ module.exports = {
         } else {
           var newUser = new Users({
             username: username,
-            password: hashPassword(password);
+            password: hashPassword(password)
           });
           newUser.save();
           console.log('User saved');
-          res.json({token: 'token'});
+          var token = jwt.encode(found, 'secret');
+          res.json({token: token});
         }
       })
+
   },
 
   login: function(req, res) {
@@ -46,7 +48,8 @@ module.exports = {
       .exec(function(err, found) {
         if (found) {
           if (found.password === password) {
-            res.json({token: 'token'});
+            var token = jwt.encode(found, 'secret');
+            res.json({token: token});
           } else {
             res.status(500).send('Bad password');
           }

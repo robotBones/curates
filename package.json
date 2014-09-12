@@ -18,8 +18,9 @@
   "homepage": "https://github.com/Next-Mars/curates",
   "dependencies": {
     "bcrypt": "^0.8.0",
-    "jwt-simple": "~0.2.0",
+    "bluebird": "^2.3.2",
     "body-parser": "~1.6.6",
+    "bookshelf": "~0.7.7",
     "chai": "^1.9.1",
     "cookie-parser": "~1.3.2",
     "express": "~4.8.6",
@@ -29,11 +30,11 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-test": "^0.11.0",
     "grunt-nodemon": "^0.3.0",
-    "mongoose": "^3.8.15",
-    "summarizer": "^1.0.0",
+    "jwt-simple": "~0.2.0",
     "knex": "~0.6.22",
+    "mongoose": "^3.8.15",
     "mysql": "~2.4.3",
-    "bookshelf": "~0.7.7"
+    "summarizer": "^1.0.0"
   },
   "devDependencies": {
     "bower": "^1.3.9",
