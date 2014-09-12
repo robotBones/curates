@@ -95,7 +95,7 @@ module.exports = {
 
     Collections.findOne({title: title})
       .exec(function(err, collection) {
-        if (!err) {
+        if (!err && collection.links) {
           collection.links.forEach(function(item) {
             if (item.title === link) {
               if (value > 0) {

@@ -12,7 +12,7 @@ html {
   cursor: pointer; 
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid #F4513E;
+  border-bottom: 10px solid #C01035;
   display: inline-block;
 }
 
@@ -22,17 +22,17 @@ html {
   cursor: pointer;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #F4513E;
+  border-top: 10px solid #C01035;
   display: inline-block;
 }
 
 a {
-  color: #FFEC01;
+  color: #5091CD;
   text-decoration: none;
 }
 
 a:visited {
-  color: #FFEC01;
+  color: #5091CD;
   text-decoration: none;
 }
 
@@ -40,15 +40,15 @@ body {
   color: white;
   padding: 5px;
   text-align: center;
-  background-color: #3E80C5;
-  font-family: 'Lobster', cursive;
+  background-color: #0D1B27;
+  font-family: 'Philosopher', sans-serif;
 }
 
 .logo {
   font-size: 1.3rem;
   cursor: pointer;
   text-align: left;
-  color: #F4513E;
+  color: #C01035;
 }
 
 .signin {
@@ -64,11 +64,11 @@ body {
   font-size: .9rem;
   margin: 5px;
   padding: 5px 10px 5px 10px;
-  background-color: #74B454;
+  background-color: #770D17;
 }
 
 .user-button:hover {
-  background-color: #83C141;
+  background-color: #651328;
 }
 
 .search-box {
@@ -88,19 +88,19 @@ body {
 }
 
 .collection-box:hover {
-  background-color: #338ed4;
+  background-color: #56606B;
 }
 
 .collection-title {
   width: auto;
-  color: #F4513E;
+  color: #CEC690;
 }
 
 .collection-description {
   padding: 5px;
   font-size: 1rem;
   text-align: left;
-  color: #FFEC01;
+  color: #5091CD;
 }
 
 .logo {
@@ -130,14 +130,14 @@ body {
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
-  background-color: #DD2C36;
+  background-color: #3F364C;
   box-shadow: 4px 4px 80px #000;
 }
 
 .modal-dialog-content {
   text-align: center;
   padding:10px;
-  color: white;
+  color: #5091CD;
 }
 
 .modal-dialog-content input{
