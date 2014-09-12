@@ -5,21 +5,13 @@ angular.module('curates.singleCollection', [])
     .state('collection', {
       url: '/:url',
       controller: 'singleCollectionController',
-      templateUrl: 'modules/singleCollection/singleCollection.html',
-      resolve: {
-        collection: function(collectionFactory, $stateParams) {
-          return collectionFactory.getCollection($stateParams.url)
-            .then(function(collection) {
-              return collection;
-            });
-        }
-      }
+      templateUrl: 'modules/singleCollection/singleCollection.html'
     });
 })
 
-.controller('singleCollectionController', ['$scope', 'collectionFactory', 'collection', '$stateParams', 'userManagement',
-  function($scope, collectionFactory, collection, $stateParams, userManagement) {
-    $scope.collection = collection;
+.controller('singleCollectionController', ['$scope', 'collectionFactory', 'userManagement',
+  function($scope, collectionFactory, userManagement) {
+    $scope.collection = collectionFactory.collection;
 
     // Allow the user to star their favorite collections and add to their favorite
     // collections list

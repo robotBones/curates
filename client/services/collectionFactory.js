@@ -6,7 +6,9 @@ angular.module('curates.collectionFactory', [])
 // controllers to resolve them and bind data before rendering.
 .factory('collectionFactory', ['$http', function($http){
 
-  var addLink = function(title, link) {
+  var collection = {};
+
+  var addLink = function(url, link) {
     return $http({
       method: 'POST',
       url: 'api/collection/addlink',
@@ -37,8 +39,6 @@ angular.module('curates.collectionFactory', [])
       url: '/api/collection/all'
     })
     .then(function(response) {
-
-      console.log(response.data.results);
       return response.data.results;
     });
   };
@@ -112,6 +112,7 @@ angular.module('curates.collectionFactory', [])
   return {
     addFavorite: addFavorite,
     addLink: addLink,
+    collection: collection,
     createCollection: createCollection,
     getCollection: getCollection,
     fetchCollections: fetchCollections,
