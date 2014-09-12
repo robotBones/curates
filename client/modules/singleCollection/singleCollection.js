@@ -5,21 +5,14 @@ angular.module('curates.singleCollection', [])
     .state('collection', {
       url: '/:url',
       controller: 'singleCollectionController',
-      templateUrl: 'modules/singleCollection/singleCollection.html',
-      resolve: {
-        collection: function(collectionFactory, $stateParams) {
-          return collectionFactory.getCollection($stateParams.url)
-            .then(function(collection) {
-              return collection;
-            });
-        }
-      }
+      templateUrl: 'modules/singleCollection/singleCollection.html'
     });
 })
 
-.controller('singleCollectionController', ['$scope', 'collectionFactory', 'collection', '$stateParams', 'userManagement',
-  function($scope, collectionFactory, collection, $stateParams, userManagement) {
-    $scope.collection = collection;
+.controller('singleCollectionController', ['$scope', 'collectionFactory', 'userManagement',
+  function($scope, collectionFactory, userManagement) {
+    $scope.addShown = false;
+    $scope.collection = collectionFactory.collection;
 
     // Allow the user to star their favorite collections and add to their favorite
     // collections list
@@ -34,8 +27,9 @@ angular.module('curates.singleCollection', [])
       collectionFactory.voteLink(collection, link, user, val);
     };
 
-    $scope.addLink = function(collection, link) {
-      collectionFactory.addLink(collection, link);
+    $scope.addLink = function(link) {
+      collectionFactory.addLink($scope.collection.title, link);
+      collectionFactory.collection.links.push(link);
     };
 
   }]);

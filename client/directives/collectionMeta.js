@@ -4,8 +4,19 @@ angular.module('curates')
   return {
     restrict: 'E',
     scopes: {
-      collection: '='
+      collection: '=',
+      user: '='
     },
-    templateUrl: 'directives/collectionMeta.html'
+    templateUrl: 'directives/collectionMeta.html',
+    link: function(scope) {
+
+      scope.addFav = function () {
+        collectionFactory.addFavorite(scope.user, scope.collection);
+      };
+      
+      scope.setCollection = function(collection) {
+        angular.copy(collection, collectionFactory.collection);
+      };
+    }
   }
 }]);

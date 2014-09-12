@@ -10,12 +10,8 @@ module.exports = function(app, express) {
   var linksRouter = express.Router();
 
   app.use('/api/collection', collectionRouter);
-  app.use('/api/collection', collectionRouter);
-  app.use('/api/collection', collectionRouter);
   // app.use('api/collection/:url' linksRouter);
   // app.use('/api/links/', linksRouter);
-  app.use('/users', userRouter);
-  app.use('/users', userRouter);
   app.use('/users', userRouter);
 
   app.get('/*', function(req, res) {

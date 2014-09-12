@@ -1,8 +1,6 @@
 <div class="search-area">
     <input class="search-box" type="text" ng-model="query" /></br>
-    <a ng-click="showMe = true">Commence Magic</a>
     <div>
-      <collection-meta ng-repeat="collection in listData | filter:query | orderBy:predicate" collection="collection" /></collection-meta>
+      <collection-meta ng-repeat="collection in listData | filter:query | orderBy:predicate" collection="collection" user="user" /></collection-meta>
     </div>
-    <modal-dialog show="showMe" url="'http://www.youtube.com/embed/CC_Y4zOUdcI?autoplay=1'" template-url="directives/unicorn.html"></modal-dialog>
 </div>

@@ -4,7 +4,9 @@ angular.module('curates.collectionFactory', [])
 // that center around collections.  POST requests are handled using success and
 // error functionality.  GET requests are handled using then in order to allow
 // controllers to resolve them and bind data before rendering.
-.factory('collectionFactory', ['$http', function($http){
+.factory('collectionFactory', ['$http', '$state', function($http, $state){
+
+  var collection = {};
 
   var addLink = function(title, link) {
     return $http({
@@ -37,7 +39,7 @@ angular.module('curates.collectionFactory', [])
       url: '/api/collection/all'
     })
     .then(function(response) {
-      return response.data;
+      return response.data.results;
     });
   };
 
@@ -51,14 +53,18 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var createCollection = function(collection) {
+  var createCollection = function(coll) {
+    // parse out all non url friendly characters and convert to lower case
+    coll.url = coll.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+
     return $http({
       method: 'POST',
       url: '/api/collection/create',
-      data: collection
+      data: coll
     })
     .success(function(data, code) {
-      // do something awesome with the server response
+      angular.copy(coll, collection);
+      $state.go('collection', {url: coll.url})
     })
     .error(function(data, code) {
       // do something awesome with the server response
@@ -106,6 +112,7 @@ angular.module('curates.collectionFactory', [])
   return {
     addFavorite: addFavorite,
     addLink: addLink,
+    collection: collection,
     createCollection: createCollection,
     getCollection: getCollection,
     fetchCollections: fetchCollections,

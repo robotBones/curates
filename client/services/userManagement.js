@@ -14,7 +14,7 @@ angular.module('curates.services', [])
       }
     }).success(function(data) {
       // store the current user
-
+      console.log(data);
       user.username = username;
 
       angular.copy([true], loggedIn);
@@ -22,6 +22,7 @@ angular.module('curates.services', [])
       $window.localStorage.setItem('curates-user', data.token);
     }).error(function(data, statuscode) {
       // trigger some awesome event here
+      console.log('error:', statuscode);
     });
   };
 
