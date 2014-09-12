@@ -46,7 +46,7 @@ module.exports = {
 
   addLink: function(req, res) {
     var link = {
-      url: req.body.link;
+      url: req.body.link
     };    
 
     Collections.findOne({title: title})
@@ -55,7 +55,7 @@ module.exports = {
           res.send('Collection does not exist');
         } else {
           summary(link).then(function(data){
-            link.description = data.summary;///////////////////
+            link.description = data.summary;
             link.title = data.title;
             collection.links.push(link);
             collection.save();
