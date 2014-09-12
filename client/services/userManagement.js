@@ -50,18 +50,6 @@ angular.module('curates.services', [])
     // remove token
     $window.localStorage.removeItem('curates-user');
     angular.copy([false], loggedIn);
-    // trigger server to wipe token
-    return $http({
-      method: 'GET',
-      url: '/users/signout',
-      params: {
-        username: username,
-      }
-    }).success(function(data) {
-      // successful logout event
-    }).error(function(data, statuscode) {
-      // trigger some awesome event here
-    });
   };
 
   return {

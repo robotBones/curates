@@ -45,7 +45,7 @@ angular.module('curates.collectionFactory', [])
     return $http({
       method: 'GET',
       url: '/api/collection/users',
-      params: {user: user}
+      params: {username: user}
     }).then(function(response) {
       return response.data;
     });
@@ -58,7 +58,6 @@ angular.module('curates.collectionFactory', [])
       data: collection
     })
     .success(function(data, code) {
-      console.log('succeeded');
       // do something awesome with the server response
     })
     .error(function(data, code) {
