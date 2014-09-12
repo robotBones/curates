@@ -66,6 +66,21 @@ var collectionSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+// Compare passwords
+userSchema.methods.comparePasswords = function (candidatePassword) {
+  var defer = Q.defer();
+  var savedPassword = this.password;
+  bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
+    if (err) {
+      defer.reject(err);
+    } else {
+      defer.resolve(isMatch);
+    }
+  });
+  return defer.promise;
+};
+
 var Collection = mongoose.model('Collection', collectionSchema);
 var User = mongoose.model('User', userSchema);
 
@@ -93,19 +108,6 @@ userSchema.pre('save', function (next) {
   });
 });
 
-// Compare passwords
-userSchema.methods.comparePasswords = function (candidatePassword) {
-  var defer = Q.defer();
-  var savedPassword = this.password;
-  bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
-    if (err) {
-      defer.reject(err);
-    } else {
-      defer.resolve(isMatch);
-    }
-  });
-  return defer.promise;
-};
 
 exports.collection = Collection;
 exports.user = User;

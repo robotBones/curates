@@ -38,11 +38,12 @@ module.exports = {
         } else {
           return user.comparePasswords(password)
             .then(function(foundUser) {
+              console.log('got here')
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
                 res.json({token: token});
               } else {
-                return next(new Error('No user'));
+                console.log('No user');
               }
             });
         }
