@@ -20,6 +20,7 @@ module.exports = {
           newUser.save();
           console.log('User saved');
           var token = jwt.encode(found, 'secret');
+          console.log(token)
           res.json({token: token});
         }
       })
