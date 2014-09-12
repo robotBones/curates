@@ -13,7 +13,7 @@ module.exports = function(grunt) {
       options: {
         configFile: 'karma.conf.js'
       },
-      continuous: { 
+      continuous: {
         detectBrowsers: {
           enabled: false,
           usePhantomJS: true
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 
     nodemon: {
       dev: {
-        script: 'server.js'
+        script: 'index.js'
       }
     },
 
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
     }
 
   });
-  
+
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-karma');
