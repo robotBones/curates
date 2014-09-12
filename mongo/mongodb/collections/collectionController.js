@@ -93,9 +93,9 @@ module.exports = {
     var title = req.body.title;
     var link = req.body.linkTitle;
 
-    Collections.find({title: title})
+    Collections.findOne({title: title})
       .exec(function(err, collection) {
-        if (collection) {
+        if (!err && collection.links.length) {
           collection.links.forEach(function(item) {
             if (item.title === link) {
               if (value > 0) {
@@ -106,9 +106,9 @@ module.exports = {
             }
           });
           collection.save();
-          res.send('Links voted');
+          res.status(201).send('Links voted');
         } else {
-          res.send('Collection does not exist');
+          res.status(404).send('Collection does not exist');
         }
 
       }); 
