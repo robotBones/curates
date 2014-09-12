@@ -4,7 +4,7 @@ angular.module('curates.collectionFactory', [])
 // that center around collections.  POST requests are handled using success and
 // error functionality.  GET requests are handled using then in order to allow
 // controllers to resolve them and bind data before rendering.
-.factory('collectionFactory', ['$http', function($http){
+.factory('collectionFactory', ['$http', '$state', function($http, $state){
 
   var collection = {};
 
@@ -53,18 +53,18 @@ angular.module('curates.collectionFactory', [])
     });
   };
 
-  var createCollection = function(collection) {
+  var createCollection = function(coll) {
     // parse out all non url friendly characters and convert to lower case
-    collection.url = collection.name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    coll.url = coll.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
 
     return $http({
       method: 'POST',
       url: '/api/collection/create',
-      data: collection
+      data: coll
     })
     .success(function(data, code) {
-      // do something awesome with the server response
-      // register positive response code
+      collection = coll;
+      $state.go('collection', {url: coll.url})
     })
     .error(function(data, code) {
       // do something awesome with the server response
