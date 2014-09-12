@@ -28,7 +28,7 @@ angular.module('curates.singleCollection', [])
     };
 
     $scope.addLink = function(link) {
-      collectionFactory.addLink($scope.collection, link);
+      collectionFactory.addLink($scope.collection.title, link);
     };
 
   }]);

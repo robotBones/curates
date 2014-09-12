@@ -8,7 +8,7 @@ angular.module('curates.collectionFactory', [])
 
   var collection = {};
 
-  var addLink = function(url, link) {
+  var addLink = function(title, link) {
     return $http({
       method: 'POST',
       url: 'api/collection/addlink',
@@ -19,6 +19,7 @@ angular.module('curates.collectionFactory', [])
     })
     .success(function(data, code) {
       // do something cool with a successful post
+      console.log(data);
     })
     .error(function(data, code) {
       // do something cool with an error
