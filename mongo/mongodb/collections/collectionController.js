@@ -1,5 +1,6 @@
 var Collections = require('../../mongo.js').collection;
 var Users = require('../../mongo.js').user;
+var summary = require('../../../summary.js');
 
 module.exports = {
   collectionCreate: function(req, res) {
@@ -46,12 +47,16 @@ module.exports = {
   addLink: function(req, res) {
     var title = req.body.title;
     var link = req.body.link;
+    var description = summary(req.body.url);
+
 
     Collections.findOne({title: title})
       .exec(function(err, collection) {
+
         if (!collection) {
           res.send('Collection does not exist');
         } else {
+          links.description = description;
           collection.links.push(link);
           collection.save();
           res.send('Link added');
