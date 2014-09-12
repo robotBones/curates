@@ -37,7 +37,7 @@ a:visited {
 }
 
 body {
-  color: white;
+  color: #7A9563;
   padding: 5px;
   text-align: center;
   background-color: #0D1B27;
@@ -45,10 +45,9 @@ body {
 }
 
 .logo {
-  font-size: 1.3rem;
-  cursor: pointer;
-  text-align: left;
+  font-size: 1.4rem;
   color: #C01035;
+  cursor: pointer;
 }
 
 .signin {
@@ -83,7 +82,7 @@ body {
 }
 
 .collection-box {
-  text-align: left;
+  text-align: center;
   padding: 0px 0px 10px 0px;
 }
 
@@ -98,16 +97,15 @@ body {
 
 .collection-description {
   padding: 5px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-align: left;
   color: #5091CD;
 }
 
 .logo {
-  float: right;
+  text-align: left;
   right: 0;
-  width: 40px;
-  display: inline;
+  display: block;
 }
 
 .modal-overlay {
@@ -158,4 +156,24 @@ body {
 .modal-iframe {
   width: 90%;
   height: 300px;
+}
+
+.double {
+  position: absolute;
+  right: 0;
+  width: 40px;
+  display: block;
+}
+
+.one {
+  top: 0px;
+}
+
+.two {
+  top: 40px;
+}
+
+.area {
+  text-align: center;
+  position: relative;
 }

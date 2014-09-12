@@ -1,8 +1,8 @@
 <div>
-  <div class="collection-box">
-    <img class="logo" src="../../assets/images/add.png" ng-click="addShown = true"/>
-    <img class="logo" src="../../assets/images/heart-icon.png" />
-    <h2 class="collection-title">{{ collection.title }}</h2>
+  <div class="area">
+    <img class="double two" src="../../assets/images/add.png" ng-click="addShown = true"/>
+    <img class="double one" src="../../assets/images/heart-icon.png" ng-click="addFav(collection)"/>
+    <h2 class="collection-title single">{{ collection.title }}</h2>
     <p class="collection-description-text">{{ collection.description }}</p>
     <modal-dialog show="addShown" action="addLink(link)" template-url="directives/addlink.tpl.html"></modal-dialog>
   </div>
