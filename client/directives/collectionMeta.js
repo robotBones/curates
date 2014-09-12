@@ -1,17 +1,16 @@
 angular.module('curates')
 
-.directive('collectionMeta', ['collectionFactory', function(collectionFactory) {
+.directive('collectionMeta', ['collectionFactory', 'userManagement', function(collectionFactory, userManagement) {
   return {
     restrict: 'E',
     scopes: {
       collection: '=',
-      user: '='
     },
     templateUrl: 'directives/collectionMeta.html',
     link: function(scope) {
 
-      scope.addFav = function () {
-        collectionFactory.addFavorite(scope.user, scope.collection);
+      scope.addFav = function (collection) {
+        collectionFactory.addFavorite(userManagement.user.username, collection);
       };
       
       scope.setCollection = function(collection) {

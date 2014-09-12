@@ -1,7 +1,6 @@
 <div class="collection-box">
     <!-- Create ng-if to hide icon if already favorited -->
-    <img class="logo" src="../../assets/images/heart-icon.png" />
+    <img class="logo" src="../../assets/images/heart-icon.png" ng-click="addFav(collection)"/>
     <h2 class="collection-title" ng-click="setCollection(collection)" ui-sref="collection({url: collection.url})">{{ collection.title }}</h2>
     <p class="collection-description">{{ collection.description }}</p>
-    <p class="collection-creator" ui-sref="user-collections({user: collection.user.givenName})">{{collection.user.givenName}}</p>
 </div>

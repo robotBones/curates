@@ -20,7 +20,6 @@ angular.module('curates.collectionsList', [])
 .controller('collectionsListController', ['$scope', 'collections', 'userManagement',
   function($scope, collections, userManagement) {
     // Initialize search filter string used in ng-repeat orderBy filter   
-    $scope.predicate = '-stars';
     $scope.user = userManagement.user.username;
     // Get data from factory and populate listData with list of collections
     $scope.listData = collections;
