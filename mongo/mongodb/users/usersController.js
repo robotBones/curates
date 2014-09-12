@@ -1,20 +1,6 @@
 var Users = require('../../mongo.js').user;
-var bcrypt = require('bcrypt');
 var jwt = require('jwt-simple');
-
-var comparePassword = function(attempted, password) {
-  bcrypt.compare(attemptedPassword, password, function(err, isMatch) {
-    return isMatch;
-  });
-};
-
-var hashPassword = function(password) {
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(password, salt, function(err, hash) {
-        return hash;
-      });
-  });
-};
+var Q = require('q');
 
 
 module.exports = {
@@ -29,7 +15,7 @@ module.exports = {
         } else {
           var newUser = new Users({
             username: username,
-            password: hashPassword(password)
+            password: password
           });
           newUser.save();
           console.log('User saved');
@@ -43,6 +29,28 @@ module.exports = {
   login: function(req, res) {
     var username = req.query.username;
     var password = req.query.password;
+
+    var findUser = Q.nbind(Users.findOne, Users);
+    findUser({username: username})
+      .then(function (user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+        } else {
+          return user.comparePasswords(password)
+            .then(function(foundUser) {
+              if (foundUser) {
+                var token = jwt.encode(user, 'secret');
+                res.json({token: token});
+              } else {
+                return next(new Error('No user'));
+              }
+            });
+        }
+      })
+      .fail(function (error) {
+        next(error);
+      });
+
 
     Users.findOne({username: username})
       .exec(function(err, found) {
