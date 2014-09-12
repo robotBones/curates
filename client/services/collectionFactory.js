@@ -49,6 +49,7 @@ angular.module('curates.collectionFactory', [])
       url: '/api/collection/users',
       params: {username: user}
     }).then(function(response) {
+      console.log(response.data);
       return response.data;
     });
   };
@@ -82,6 +83,7 @@ angular.module('curates.collectionFactory', [])
     })
     .success(function(data, code) {
       // do something awesome with the server response
+      console.log(data);
     })
     .error(function(data, code) {
       // do something awesome with the server response

@@ -77,10 +77,10 @@ module.exports = {
 
   getUserCollections: function(req, res) {
     var username = req.query.username;
-
     Users.findOne({username: username})
       .exec(function(err, user) {
         var favorites = user.favorites;
+        console.log(favorites);
         Collections.find({_id: {$in: favorites}})
           .exec(function(err, collections) {
             res.json(collections);

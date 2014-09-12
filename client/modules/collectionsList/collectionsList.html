@@ -1,6 +1,6 @@
 <div class="search-area">
     <input class="search-box" type="text" ng-model="query" /></br>
     <div>
-      <collection-meta ng-repeat="collection in listData | filter:query | orderBy:predicate" collection="collection" user="user" /></collection-meta>
+      <collection-meta ng-repeat="collection in listData | filter:query" collection="collection" /></collection-meta>
     </div>
 </div>
