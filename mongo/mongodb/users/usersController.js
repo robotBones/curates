@@ -1,4 +1,21 @@
 var Users = require('../../mongo.js').user;
+var bcrypt = require('bcrypt');
+var jwt = require('jwt-simple');
+
+var comparePassword = function(attempted, password) {
+  bcrypt.compare(attemptedPassword, password, function(err, isMatch) {
+    return isMatch;
+  });
+};
+
+var hashPassword = function(password) {
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password, salt, function(err, hash) {
+        return hash;
+      });
+  });
+};
+
 
 module.exports = {
   signupUser: function(req, res) {
@@ -12,7 +29,7 @@ module.exports = {
         } else {
           var newUser = new Users({
             username: username,
-            password: password
+            password: hashPassword(password);
           });
           newUser.save();
           console.log('User saved');
