@@ -14,7 +14,11 @@ angular.module('curates.singleCollection', [])
     $scope.addShown = false;
     $scope.collection = collectionFactory.collection;
 
-    // Allow the user to upvote and downvote collections
+    $scope.addFav = function (collection) {
+      collectionFactory.addFavorite(userManagement.user.username, collection);
+    };
+
+    // Allow the user to upvote and downvote links
     $scope.voteLink = function(collection, link, val) {
       collectionFactory.voteLink(collection, link, val);
     };

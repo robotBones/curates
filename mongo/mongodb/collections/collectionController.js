@@ -95,7 +95,7 @@ module.exports = {
 
     Collections.findOne({title: title})
       .exec(function(err, collection) {
-        if (!err && collection.links.length) {
+        if (!err && collection.links) {
           collection.links.forEach(function(item) {
             if (item.title === link) {
               if (value > 0) {
@@ -106,9 +106,9 @@ module.exports = {
             }
           });
           collection.save();
-          res.status(201).send('Links voted');
+          res.send('Links voted');
         } else {
-          res.status(404).send('Collection does not exist');
+          res.send('Collection does not exist');
         }
 
       }); 
