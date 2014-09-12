@@ -67,7 +67,7 @@ angular.module('curates.collectionFactory', [])
   var addFavorite = function(user, collection) {
     return $http({
       method: 'POST',
-      url: '/api/collection/' + user,
+      url: '/api/collection/addfav',
       data: {collection: collection}
     })
     .success(function(data, code) {
@@ -81,7 +81,7 @@ angular.module('curates.collectionFactory', [])
   var voteLink = function(collection, link, user, value) {
     // update the vote count for this link within the collection.
     return $http({
-      method: 'POST',
+      method: 'PUT',
       url: '/api/links/',
       data: {
         collection: collection,
