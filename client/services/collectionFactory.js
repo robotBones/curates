@@ -23,7 +23,7 @@ angular.module('curates.collectionFactory', [])
     .error(function(data, code) {
       // do something cool with an error
     });
-  } 
+  }
   var getCollection = function(title) {
     return $http({
       method: 'GET',
@@ -77,7 +77,7 @@ angular.module('curates.collectionFactory', [])
       method: 'POST',
       url: '/api/collection/addfav',
       data: {
-        collection: collection, 
+        collection: collection,
         username: user
       }
     })
@@ -104,10 +104,11 @@ angular.module('curates.collectionFactory', [])
     })
     .success(function(data, code) {
       // do something cool with a successful post
+      console.log('successful vote');
     })
     .error(function(data, code) {
       // do something cool with a returned error
-      console.log(data);
+      console.log('voting error', data);
     });
   };
 

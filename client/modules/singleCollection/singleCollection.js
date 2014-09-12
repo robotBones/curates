@@ -21,6 +21,9 @@ angular.module('curates.singleCollection', [])
 
     $scope.addLink = function(link) {
       collectionFactory.addLink($scope.collection.title, link);
+      if(!collectionFactory.collection.links){
+        collectionFactory.collection.links = [];
+      }
       collectionFactory.collection.links.push(link);
     };
 
