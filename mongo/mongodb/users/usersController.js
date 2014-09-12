@@ -34,7 +34,7 @@ module.exports = {
     findUser({username: username})
       .then(function (user) {
         if (!user) {
-          next(new Error('User does not exist'));
+          console.log('User does not exist');
         } else {
           return user.comparePasswords(password)
             .then(function(foundUser) {
@@ -49,21 +49,6 @@ module.exports = {
       })
       .fail(function (error) {
         next(error);
-      });
-
-
-    Users.findOne({username: username})
-      .exec(function(err, found) {
-        if (found) {
-          if (found.password === password) {
-            var token = jwt.encode(found, 'secret');
-            res.json({token: token});
-          } else {
-            res.status(500).send('Bad password');
-          }
-        } else {
-          res.status(500).send('User does not exist');
-        }
       });
   }
 
