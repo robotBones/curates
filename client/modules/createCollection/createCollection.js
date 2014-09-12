@@ -3,13 +3,13 @@ angular.module('curates.createCollection', [])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('create', {
-      url: '/create?url',
+      url: '/create',
       templateUrl: 'modules/createCollection/createCollection.html',
       controller: 'createCollectionController'
     });
 })
 
-.controller('createCollectionController', function($scope, $state, $stateParams, userManagement, collectionFactory) {
+.controller('createCollectionController', function($scope, $state, userManagement, collectionFactory) {
   // Only loggedIn users can create collections
   $scope.loggedIn = userManagement.loggedIn;
 
